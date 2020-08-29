@@ -109,9 +109,6 @@ foreach (sort sort_kingdom_keys keys %kingdom_name) {
     $kingdom_set{$_}, '> ', remove_the( $kingdom_name{$_} );
 }
 
-print '<p>Maximum number of items to display ->;';
-print '<input type="text" name="l" value="', $limit, '" size=3>';
-
 &display_options ();
 
 print '<h3>Actions:</h3>';

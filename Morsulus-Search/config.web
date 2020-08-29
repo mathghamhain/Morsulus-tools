@@ -621,15 +621,13 @@ selected (or deselected) by clicking with the mouse on a box
 next to the Kingdom's name.
 </ol>
 
-<h3>Maximum Number of Items to Display</h3>
+<h3>Display Options</h3>
 <p>
 You can control the size of your search result by typing a number
 of items (1-500) in this box.  If you do not fill in the box, at most
 25 items will be displayed.  Note that there is a
 <a href="XXLimitPageUrlXX">built-in limit</a>
 of 500 items, which you cannot override.
-<p>
-<h3>Display Options</h3>
 <p>
 You can specify how you want your search results sorted.
 Currently there are two options:  by name and by date.
@@ -853,13 +851,11 @@ and lower-case letters.  For instance, the name pattern "And" would match
 treat "A" and "a" as being the same, so that "And" would match both
 "Andrew" and "Holland".
 <p>
-<h3>Maximum Number of Items to Display</h3>
+<h3>Display Options</h3>
 <p>
 You can control the size of your search result by typing a number
 of items in this box.  If you do not fill in the box, at most
 500 will be filled in for you.  There is no limit placed on the size of the number. 
-<p>
-<h3>Display Options</h3>
 <p>
 You can specify how you want your search results sorted.
 Currently there are two options:  by name and by date.
@@ -977,15 +973,13 @@ and lower-case letters.  For instance, the pattern "or" would match
 treat "O" and "o" as being the same, so that "or" would match both
 "gore" and "Or".
 <p>
-<h3>Maximum Number of Items to Display</h3>
+<h3>Display Options</h3>
 <p>
 You can control the size of your search result by typing a number
 of items (1-500) in this box.  If you do not fill in the box, at most
 25 items will be displayed.  Note that there is a
 <a href="XXLimitPageUrlXX">built-in limit</a>
 of 500 items, which you cannot override.
-<p>
-<h3>Display Options</h3>
 <p>
 You can specify how you want your search results sorted.
 Currently there are three sort options:  by name, by date, and by blazon.
@@ -1096,15 +1090,13 @@ There are currently four methods available for specifying criteria:
   <a href="XXDbFormatPageUrlXX#recordtype">file format document</a>.
 </ul>
 
-<h3>Maximum Number of Items to Display</h3>
+<h3>Display Options</h3>
 <p>
 You can control the size of your search result by typing a number
 of items (1-500) in this box.  If you do not fill in the box, at most
 25 items will be displayed.  Note that there is a
 <a href="XXLimitPageUrlXX">built-in limit</a>
 of 500 items, which you cannot override.
-<p>
-<h3>Display Options</h3>
 <p>
 You can specify how you want your search results sorted.
 Currently there are two options:  by name and by date.
@@ -11995,9 +11987,6 @@ print '<p>Select type of search ->;';
 &select ('b', $breadth, @breadths);
 &select ('c', $case, @cases);
 
-print '<p>Maximum number of items to display -> ';
-print '<input type="text" name="l" value="', $limit, '" size=3>';
-
 &display_options ();
 
 print '<h3>Actions:</h3>';
@@ -12090,9 +12079,6 @@ print '<input type="text" name="p" value="', $p, '" size=30>';
 
 print '<p>Select type of search ->;';
 &select ('c', $case, @cases);
-
-print '<p>Maximum number of items to display ->;';
-print '<input type="text" name="l" value="', $limit, '" size=3>';
 
 &display_options ();
 
@@ -12222,9 +12208,6 @@ foreach (sort sort_kingdom_keys keys %kingdom_name) {
   print '<br><input type="checkbox" name="k', $_, '" value="checked" ',
     $kingdom_set{$_}, '> ', remove_the( $kingdom_name{$_} );
 }
-
-print '<p>Maximum number of items to display ->;';
-print '<input type="text" name="l" value="', $limit, '" size=3>';
 
 &display_options ();
 
@@ -13490,7 +13473,11 @@ $enctype = 'application/x-www-form-urlencoded';
 # Common client function to show display options for a search.
 sub display_options {
   #global ($sort, @sorts, $era, @eras, $gloss_links, $arm_descs, @onoff);
+  print '<div class="display-options">';
   print '<h3>Display Options:</h3><ul>';
+
+  print '<li>Maximum number of items to display ->';
+  print '<input type="text" name="l" value="', $limit, '" size=3>';
 
   print '<li>Sort items by ';
   &select ('s', $sort, @sorts);
@@ -13512,6 +13499,7 @@ sub display_options {
   &select ('rs', $registered_status, @registered_status);
 
   print '</ul>';
+  print '</div>';
 }
 
 # Common client function to replace escaped URL characters with text.
@@ -15418,7 +15406,7 @@ $conf_file = '.configweb';
 
 $config{'XXPrimerUrlXX'} = 'http://heraldry.sca.org/armory/newprimer/';
 $config{'XXLoARUrlXX'} = 'http://heraldry.sca.org/loar';
-$config_version = '2024-09-26 (1:HEAD:153+)';
+$config_version = '2024-09-26 (1:HEAD:162+)';
 $config{'XXVersionXX'} = $config_version;
 $config{'XXHeadXX'} ||= '';
 $config{'XXSiteHeadXX'} ||= '';
