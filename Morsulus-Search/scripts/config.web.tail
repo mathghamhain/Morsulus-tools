@@ -42,6 +42,7 @@ $config{'XXLoARUrlXX'} = 'http://heraldry.sca.org/loar';
 $config_version = 'XXConfigVersionFromAssemblerXX';
 $config{'XXVersionXX'} = $config_version;
 $config{'XXHeadXX'} ||= '';
+$config{'XXSiteHeadXX'} ||= '';
 
 $config{'XXTrailerXX'} = "<hr><address>config.web version $config_version ";
 $config{'XXTrailer2XX'} = '';

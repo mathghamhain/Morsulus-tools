@@ -1020,6 +1020,7 @@ sub print_header {
 
   # Print first part of HTML body.
   print '<body>';
+  print q{XXSiteHeadXX};
   print '<form action="', $cgi_url, '",type="POST",enctype="', $enctype, '">';
   print '<h2>', $form_title, '</h2>';
 }
