@@ -377,7 +377,11 @@ $enctype = 'application/x-www-form-urlencoded';
 # Common client function to show display options for a search.
 sub display_options {
   #global ($sort, @sorts, $era, @eras, $gloss_links, $arm_descs, @onoff);
+  print '<div class="display-options">';
   print '<h3>Display Options:</h3><ul>';
+
+  print '<li>Maximum number of items to display ->';
+  print '<input type="text" name="l" value="', $limit, '" size=3>';
 
   print '<li>Sort items by ';
   &select ('s', $sort, @sorts);
@@ -393,6 +397,7 @@ sub display_options {
   &select ('a', $arm_descs, @onoff);
 
   print '</ul>';
+  print '</div>';
 }
 
 # Common client function to replace escaped URL characters with text.

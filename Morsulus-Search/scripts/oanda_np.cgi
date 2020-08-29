@@ -81,9 +81,6 @@ print '<p>Select type of search ->;';
 &select ('b', $breadth, @breadths);
 &select ('c', $case, @cases);
 
-print '<p>Maximum number of items to display -> ';
-print '<input type="text" name="l" value="', $limit, '" size=3>';
-
 &display_options ();
 
 print '<h3>Actions:</h3>';

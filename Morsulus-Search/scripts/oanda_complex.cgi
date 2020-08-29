@@ -126,8 +126,6 @@ for $i (1 .. $criteria) {
   print '<input type="text" name="p', $i, '" value="', $p[$i], '" size=60>';
 }
 print '</ol>';
-print '<p>Maximum number of items to display ->;';
-print '<input type="text" name="l" value="', $limit, '" size=3>';
 
 &display_options ();
 
