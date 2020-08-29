@@ -17423,6 +17423,7 @@ sub display_options {
   print '<li>Sort items by ';
   &select ('s', $sort, @sorts);
 
+<<<<<<< HEAD
   if ( $in_complex_search ) {
       print '<li><label>Minimum Score ';
       print '<input type="text" name="m" value="', $minimum_score, '" size=4>';
@@ -19466,7 +19467,7 @@ $conf_file = '.configweb';
 
 $config{'XXPrimerUrlXX'} = 'http://heraldry.sca.org/armory/newprimer/';
 $config{'XXLoARUrlXX'} = 'http://heraldry.sca.org/loar';
-$config_version = '2024-09-26 (1:HEAD:220+)';
+$config_version = '2024-09-26 (1:HEAD:221+)';
 $config{'XXVersionXX'} = $config_version;
 $config{'XXHeadXX'} ||= '';
 $config{'XXSiteHeadXX'} ||= '';
