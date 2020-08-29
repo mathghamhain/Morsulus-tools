@@ -388,9 +388,13 @@ sub display_options {
   my ( $in_complex_search ) = shift;
   #global ($sort, @sorts, $era, @eras, $gloss_links, $arm_descs, @onoff);
   print '<div class="display-options">';
-  print '<h3>Display Options:</h3><ul">';
+  print '<h3>Display Options:</h3><ul>';
 
-  print '<ul>';
+  print '<li>Maximum number of items to display ->';
+  print '<input type="text" name="l" value="', $limit, '" size=3>';
+
+  print '<li>Sort items by ';
+  &select ('s', $sort, @sorts);
 
   if ( $in_complex_search ) {
       print '<li><label>Minimum Score ';

@@ -683,6 +683,12 @@ next to the Kingdom's name.
 
 <h3>Display Options</h3>
 <p>
+You can control the size of your search result by typing a number
+of items (1-500) in this box.  If you do not fill in the box, at most
+25 items will be displayed.  Note that there is a
+<a href="XXLimitPageUrlXX">built-in limit</a>
+of 500 items, which you cannot override.
+<p>
 You can specify how you want your search results sorted.
 There are three options:  by name, by date of last action, and by blazon.
 It is usually easiest to find items when they are sorted by name.
@@ -935,13 +941,11 @@ and lower-case letters.  For instance, the name pattern "And" would match
 treat "A" and "a" as being the same, so that "And" would match both
 "Andrew" and "Holland".
 <p>
-<h3>Maximum Number of Items to Display</h3>
+<h3>Display Options</h3>
 <p>
 You can control the size of your search result by typing a number
 of items in this box.  If you do not fill in the box, at most
 500 will be filled in for you.  There is no limit placed on the size of the number. 
-<p>
-<h3>Display Options</h3>
 <p>
 You can specify how you want your search results sorted.
 There are three options: by name, by date of last action, and by blazon.
@@ -1063,7 +1067,22 @@ by typing a backslash (\) followed by the three-digit
 For instance, to find "v&#234;tu" you can type the pattern
 "v\353tu".
 <p>
+<h3>Search Types</h3>
+<p>
+You can specify a name search that is "case-sensitive" or
+"case-insensitive".  A case-sensitive search differentiates upper-case
+and lower-case letters.  For instance, the pattern "or" would match
+"gore" but not "Or".  A case-insensitive search would
+treat "O" and "o" as being the same, so that "or" would match both
+"gore" and "Or".
+<p>
 <h3>Display Options</h3>
+<p>
+You can control the size of your search result by typing a number
+of items (1-500) in this box.  If you do not fill in the box, at most
+25 items will be displayed.  Note that there is a
+<a href="XXLimitPageUrlXX">built-in limit</a>
+of 500 items, which you cannot override.
 <p>
 You can specify how you want your search results sorted.
 Currently there are three sort options:  by name, by date, and by blazon.
@@ -17396,9 +17415,13 @@ sub display_options {
   my ( $in_complex_search ) = shift;
   #global ($sort, @sorts, $era, @eras, $gloss_links, $arm_descs, @onoff);
   print '<div class="display-options">';
-  print '<h3>Display Options:</h3><ul">';
+  print '<h3>Display Options:</h3><ul>';
 
-  print '<ul>';
+  print '<li>Maximum number of items to display ->';
+  print '<input type="text" name="l" value="', $limit, '" size=3>';
+
+  print '<li>Sort items by ';
+  &select ('s', $sort, @sorts);
 
   if ( $in_complex_search ) {
       print '<li><label>Minimum Score ';
@@ -19443,7 +19466,7 @@ $conf_file = '.configweb';
 
 $config{'XXPrimerUrlXX'} = 'http://heraldry.sca.org/armory/newprimer/';
 $config{'XXLoARUrlXX'} = 'http://heraldry.sca.org/loar';
-$config_version = '2024-09-26 (1:HEAD:219+)';
+$config_version = '2024-09-26 (1:HEAD:220+)';
 $config{'XXVersionXX'} = $config_version;
 $config{'XXHeadXX'} ||= '';
 $config{'XXSiteHeadXX'} ||= '';
