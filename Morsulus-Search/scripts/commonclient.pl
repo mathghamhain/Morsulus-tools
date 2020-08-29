@@ -1016,7 +1016,9 @@ sub print_header {
   print "Content-Type:  text/html\n";
 
   # Print HTML header.
-  print '<html><head><title>', $form_title, '</title></head>';
+  print '<html><head><title>', $form_title, '</title>';
+  print q{XXHeadXX};
+  print '</head>';
 
   # Print first part of HTML body.
   print '<body>';
