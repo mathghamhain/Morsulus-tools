@@ -25,8 +25,8 @@ $criteria = 10;
 
 @methods = ('', 'armory description', 'name pattern', 'record type', 'blazon pattern', 'broad name', 'date and kingdom', 'notes pattern');
 
-@sorts = ('score and blazon', 'score and name', 'score only', 'name only', 'last action date', 'blazon');
-$sort = 'score and blazon';  # default
+@sorts = ('name only', 'last action date', 'blazon');
+$sort = 'blazon';  # default
 
 foreach $pair (split (/\&/, $ENV{'QUERY_STRING'})) {
   ($left, $right) = split (/=/, $pair, 2);
@@ -45,12 +45,14 @@ foreach $pair (split (/\&/, $ENV{'QUERY_STRING'})) {
   $gloss_links = $right if ($left eq 'g');
   $limit = $right if ($left eq 'l');
   $minimum_score = $right if ($left eq 'm');
+  $scoresort = $right if ($left eq 'r');
   $sort = $right if ($left eq 's');
   $registered_status = $right if ($left eq 'rs');
   $raw_display_mode = $right if ($left eq 'raw');
 }
 $limit = 500
   if ($limit !~ /^\d+$/);
+$scoresort = 1 if ( ! defined $minimum_score );
 $minimum_score = 1 if ( $minimum_score !~ /^[-]?\d+$/);
 
 &print_header ();
@@ -121,23 +123,24 @@ if ($valid > 0 && $invalid == 0) {
 
   $n = &get_matches ();
   
-  if ($sort eq 'score only') {
-    $scoresort = 1;
-  } elsif ($sort eq 'score and blazon') {
-    $scoresort = 1;
-    @matches = sort byscoreblazon @matches;
-  } elsif ($sort eq 'score and name') {
-    $scoresort = 1;
-    @matches = sort byscorename @matches;
-  } elsif ($sort eq 'name only') {
-    $scoresort = 0;
-    @matches = sort byname @matches;
+  if ($sort eq 'blazon') {
+    if ( $scoresort ) {
+      @matches = sort byscoreblazon @matches;
+    } else {
+      @matches = sort byblazon @matches;
+    }
   } elsif ($sort eq 'last action date') {
-    $scoresort = 0;
-    @matches = sort bylastdate @matches;
-  } elsif ($sort eq 'blazon') {
-    $scoresort = 0;
-    @matches = sort byblazon @matches;
+    if ( $scoresort ) {
+      @matches = sort byscoredate @matches;
+    } else {
+      @matches = sort bylastdate @matches;
+    }
+  } else {
+    if ( $scoresort ) {
+      @matches = sort byscorename @matches;
+    } else {
+      @matches = sort byname @matches;
+    }
   }
 }
   

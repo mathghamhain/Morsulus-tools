@@ -390,6 +390,9 @@ sub display_options {
       print '<li><label>Minimum Score ';
       print '<input type="text" name="m" value="', $minimum_score, '" size=4>';
       print '</label>';
+      print '<li><label>Group By Score ';
+      print '<input type="checkbox" name="r" value="1" ' . ( $scoresort ? 'checked' : '' ) . '> ';
+      print '</label>';
   }
 
   print '<li><label>Sort By ';
@@ -818,6 +821,14 @@ sub byscoreblazon {
   local($c) = ($sb <=> $sa);
   return (($sb <=> $sa) || ($ba cmp $bb));
   return $na cmp $nb;
+}
+sub byscoredate {
+  local($sa, $na, $da) = split (/\|/, $a);
+  local($sb, $nb, $db) = split (/\|/, $b);
+  local($c) = ($sb <=> $sa);
+  $da =~ s/^.*[-]//;
+  $db =~ s/^.*[-]//;
+  return &idate ($da) <=> &idate ($db);
 }
 
 #  Common client function to translate a Latin-1 string to HTML.
