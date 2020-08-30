@@ -390,8 +390,7 @@ sub display_options {
   print '<div class="display-options">';
   print '<h3>Display Options:</h3><ul>';
 
-  print '<li>Sort items by ';
-  &select ('s', $sort, @sorts);
+  print '<ul>';
 
   if ( $in_complex_search ) {
       print '<li><label>Minimum Score ';
