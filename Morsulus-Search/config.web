@@ -683,12 +683,6 @@ next to the Kingdom's name.
 
 <h3>Display Options</h3>
 <p>
-You can control the size of your search result by typing a number
-of items (1-500) in this box.  If you do not fill in the box, at most
-25 items will be displayed.  Note that there is a
-<a href="XXLimitPageUrlXX">built-in limit</a>
-of 500 items, which you cannot override.
-<p>
 You can specify how you want your search results sorted.
 There are three options:  by name, by date of last action, and by blazon.
 It is usually easiest to find items when they are sorted by name.
@@ -943,9 +937,6 @@ treat "A" and "a" as being the same, so that "And" would match both
 <p>
 <h3>Display Options</h3>
 <p>
-You can control the size of your search result by typing a number
-of items in this box.  If you do not fill in the box, at most
-500 will be filled in for you.  There is no limit placed on the size of the number. 
 <p>
 You can specify how you want your search results sorted.
 There are three options: by name, by date of last action, and by blazon.
@@ -1077,12 +1068,6 @@ treat "O" and "o" as being the same, so that "or" would match both
 "gore" and "Or".
 <p>
 <h3>Display Options</h3>
-<p>
-You can control the size of your search result by typing a number
-of items (1-500) in this box.  If you do not fill in the box, at most
-25 items will be displayed.  Note that there is a
-<a href="XXLimitPageUrlXX">built-in limit</a>
-of 500 items, which you cannot override.
 <p>
 You can specify how you want your search results sorted.
 Currently there are three sort options:  by name, by date, and by blazon.
@@ -17417,13 +17402,9 @@ sub display_options {
   print '<div class="display-options">';
   print '<h3>Display Options:</h3><ul>';
 
-  print '<li>Maximum number of items to display ->';
-  print '<input type="text" name="l" value="', $limit, '" size=3>';
-
   print '<li>Sort items by ';
   &select ('s', $sort, @sorts);
 
-<<<<<<< HEAD
   if ( $in_complex_search ) {
       print '<li><label>Minimum Score ';
       print '<input type="text" name="m" value="', $minimum_score, '" size=4>';
@@ -19467,7 +19448,7 @@ $conf_file = '.configweb';
 
 $config{'XXPrimerUrlXX'} = 'http://heraldry.sca.org/armory/newprimer/';
 $config{'XXLoARUrlXX'} = 'http://heraldry.sca.org/loar';
-$config_version = '2024-09-26 (1:HEAD:221+)';
+$config_version = '2024-09-26 (1:HEAD:222+)';
 $config{'XXVersionXX'} = $config_version;
 $config{'XXHeadXX'} ||= '';
 $config{'XXSiteHeadXX'} ||= '';

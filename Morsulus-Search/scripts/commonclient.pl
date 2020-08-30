@@ -390,13 +390,9 @@ sub display_options {
   print '<div class="display-options">';
   print '<h3>Display Options:</h3><ul>';
 
-  print '<li>Maximum number of items to display ->';
-  print '<input type="text" name="l" value="', $limit, '" size=3>';
-
   print '<li>Sort items by ';
   &select ('s', $sort, @sorts);
 
-<<<<<<< HEAD
   if ( $in_complex_search ) {
       print '<li><label>Minimum Score ';
       print '<input type="text" name="m" value="', $minimum_score, '" size=4>';
