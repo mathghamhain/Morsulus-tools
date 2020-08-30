@@ -623,15 +623,15 @@ next to the Kingdom's name.
 
 <h3>Display Options</h3>
 <p>
-You can control the size of your search result by typing a number
-of items (1-500) in this box.  If you do not fill in the box, at most
-25 items will be displayed.  Note that there is a
-<a href="XXLimitPageUrlXX">built-in limit</a>
-of 500 items, which you cannot override.
-<p>
 You can specify how you want your search results sorted.
 Currently there are two options:  by name and by date.
 It is usually easiest to find items when they are sorted by name.
+<p>
+You can control the size of your search result by typing a number
+of items (1-500) in the limit box.  If you do not fill in the box, at most
+25 items will be displayed.  Note that there is a
+<a href="XXLimitPageUrlXX">built-in limit</a>
+of 500 items, which you cannot override.
 <p>
 You can also specify whether you want dates shown in modern style
 (Common Era year/A.D.) or SCA style (Anno Societatis).
@@ -853,15 +853,17 @@ treat "A" and "a" as being the same, so that "And" would match both
 <p>
 <h3>Display Options</h3>
 <p>
-You can control the size of your search result by typing a number
-of items in this box.  If you do not fill in the box, at most
-500 will be filled in for you.  There is no limit placed on the size of the number. 
-<p>
 You can specify how you want your search results sorted.
 Currently there are two options:  by name and by date.
 It is usually easiest to find names when they are sorted by name, but
 you might want to sort by date if the item
 you are looking for is particularly old or particularly recent.
+<p>
+You can control the size of your search result by typing a number
+of items (1-500) in the limit box.  If you do not fill in the box, at most
+25 items will be displayed.  Note that there is a
+<a href="XXLimitPageUrlXX">built-in limit</a>
+of 500 items, which you cannot override.
 <p>
 You can also specify whether you want dates shown in modern style
 (Common Era year/A.D.) or SCA style (Anno Societatis).
@@ -975,16 +977,16 @@ treat "O" and "o" as being the same, so that "or" would match both
 <p>
 <h3>Display Options</h3>
 <p>
-You can control the size of your search result by typing a number
-of items (1-500) in this box.  If you do not fill in the box, at most
-25 items will be displayed.  Note that there is a
-<a href="XXLimitPageUrlXX">built-in limit</a>
-of 500 items, which you cannot override.
-<p>
 You can specify how you want your search results sorted.
 Currently there are three sort options:  by name, by date, and by blazon.
 You might want to sort by date if you know that the item
 you are looking for is particularly old.
+<p>
+You can control the size of your search result by typing a number
+of items (1-500) in the limit box.  If you do not fill in the box, at most
+25 items will be displayed.  Note that there is a
+<a href="XXLimitPageUrlXX">built-in limit</a>
+of 500 items, which you cannot override.
 <p>
 You can also specify whether you want dates to be shown in modern style
 (Common Era year/A.D.) or SCA style (Anno Societatis).
@@ -1092,17 +1094,17 @@ There are currently four methods available for specifying criteria:
 
 <h3>Display Options</h3>
 <p>
-You can control the size of your search result by typing a number
-of items (1-500) in this box.  If you do not fill in the box, at most
-25 items will be displayed.  Note that there is a
-<a href="XXLimitPageUrlXX">built-in limit</a>
-of 500 items, which you cannot override.
-<p>
 You can specify how you want your search results sorted.
 Currently there are two options:  by name and by date.
 It is usually easiest to find names when they are sorted by name.
 You might want to sort by date if you know that the item
 you are looking for is particularly old.
+<p>
+You can control the size of your search result by typing a number
+of items (1-500) in the limit box.  If you do not fill in the box, at most
+25 items will be displayed.  Note that there is a
+<a href="XXLimitPageUrlXX">built-in limit</a>
+of 500 items, which you cannot override.
 <p>
 You can also specify whether you want dates shown in modern style
 (Common Era year/A.D.) or SCA style (Anno Societatis).
@@ -1260,11 +1262,7 @@ you were looking for may be one of the ones that was cut from
 the listing.  There are several things you might do next:
 <ul>
 <li>You can specify a higher limit by filling in the
-box next to the words:
-<blockquote>
-<p>Maximum number of items to return ->;
-</blockquote>
-and re-running the search.
+box next to the words "Limit to a maximum of ___ items" and re-running the search.
 <li>You can make your search more specific and re-run it.
 For instance, if you are doing a
 <a href="XXNpSearchUrlXX">name pattern search</a>, you might
@@ -13476,11 +13474,12 @@ sub display_options {
   print '<div class="display-options">';
   print '<h3>Display Options:</h3><ul>';
 
-  print '<li>Maximum number of items to display ->';
-  print '<input type="text" name="l" value="', $limit, '" size=3>';
-
   print '<li>Sort items by ';
   &select ('s', $sort, @sorts);
+
+  print '<li>Limit to a maximum of ';
+  print '<input type="text" name="l" value="', $limit, '" size=4>';
+  print ' items';
 
   print '<li><label>';
   print '<input type="checkbox" name="d" value="SCA" ' . ( $era eq 'SCA' ? 'checked' : '' ) . '> ';
@@ -15407,7 +15406,7 @@ $conf_file = '.configweb';
 
 $config{'XXPrimerUrlXX'} = 'http://heraldry.sca.org/armory/newprimer/';
 $config{'XXLoARUrlXX'} = 'http://heraldry.sca.org/loar';
-$config_version = '2024-09-26 (1:HEAD:163+)';
+$config_version = '2024-09-26 (1:HEAD:164+)';
 $config{'XXVersionXX'} = $config_version;
 $config{'XXHeadXX'} ||= '';
 $config{'XXSiteHeadXX'} ||= '';

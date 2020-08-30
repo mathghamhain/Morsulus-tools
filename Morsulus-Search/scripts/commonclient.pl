@@ -383,11 +383,12 @@ sub display_options {
   print '<div class="display-options">';
   print '<h3>Display Options:</h3><ul>';
 
-  print '<li>Maximum number of items to display ->';
-  print '<input type="text" name="l" value="', $limit, '" size=3>';
-
   print '<li>Sort items by ';
   &select ('s', $sort, @sorts);
+
+  print '<li>Limit to a maximum of ';
+  print '<input type="text" name="l" value="', $limit, '" size=4>';
+  print ' items';
 
   print '<li><label>';
   print '<input type="checkbox" name="d" value="SCA" ' . ( $era eq 'SCA' ? 'checked' : '' ) . '> ';
