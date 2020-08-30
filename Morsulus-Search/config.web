@@ -11514,16 +11514,19 @@ foreach $pair (split (/\&/, $ENV{'QUERY_STRING'})) {
   $era = $right if ($left eq 'd');
   $gloss_links = $right if ($left eq 'g');
   $limit = $right if ($left eq 'l');
+  $minimum_score = $right if ($left eq 'm');
   $sort = $right if ($left eq 's');
 }
 $limit = 500
   if ($limit !~ /^\d+$/);
+$minimum_score = 1 if ( $minimum_score !~ /^[-]?\d+$/);
 
 &print_header ();
 print "<p>Criteria with no pattern are ignored. The weight and method are preloaded to make life simpler for mobile users.\n";
 
 $invalid = 0;
 $valid = 0;
+$maximum_score = 0;
 for $i (1 .. $criteria) {
     next if $p[$i] eq '';
   if ($weight[$i] !~ /^[+&-]?\d+$/) {
@@ -11537,14 +11540,19 @@ for $i (1 .. $criteria) {
       $invalid++;
     } else {
       $valid++;
+      $maximum_score += $weight[$i];
     }
   }
 }
+
+my $cutoff_score = ( $minimum_score < 1 ) ? $maximum_score + $minimum_score : $minimum_score;
+$cutoff_score = 1 if ( ! $cutoff_score or $cutoff_score !~ /^\d+$/ );
 
 if ($valid > 0 && $invalid == 0) {
   &connect_to_data_server ();
 
   print S 'l ', $limit;
+  
   for $i (1 .. $criteria) {
     next if $p[$i] eq '';
     if ($method[$i] eq 'name pattern') {
@@ -11562,6 +11570,7 @@ if ($valid > 0 && $invalid == 0) {
       print S "n $weight[$i] $p[$i]";
     }
   }
+  print S 't 0 ', $cutoff_score if ( $cutoff_score != 1 );
   print S 'EOF';
 
   $n = &get_matches ();
@@ -11605,7 +11614,7 @@ for $i (1 .. $criteria) {
 }
 print '</ol>';
 
-&display_options ();
+&display_options (1);
 
 print '<h3>Actions:</h3>';
 print '<input type="submit" value="search for items matching the above criteria">';
@@ -12544,16 +12553,26 @@ $enctype = 'application/x-www-form-urlencoded';
 
 # Common client function to show display options for a search.
 sub display_options {
+  my ( $in_complex_search ) = shift;
   #global ($sort, @sorts, $era, @eras, $gloss_links, $arm_descs, @onoff);
   print '<div class="display-options">';
   print '<h3>Display Options:</h3><ul>';
 
-  print '<li>Sort items by ';
-  &select ('s', $sort, @sorts);
+  print '<ul>';
 
-  print '<li>Limit to a maximum of ';
+  if ( $in_complex_search ) {
+      print '<li><label>Minimum Score ';
+      print '<input type="text" name="m" value="', $minimum_score, '" size=4>';
+      print '</label>';
+  }
+
+  print '<li><label>Sort By ';
+  &select ('s', $sort, @sorts);
+  print '</label>';
+
+  print '<li><label>Result Limit ';
   print '<input type="text" name="l" value="', $limit, '" size=4>';
-  print ' items';
+  print '</label>';
 
   print '<li><label>';
   print '<input type="checkbox" name="d" value="SCA" ' . ( $era eq 'SCA' ? 'checked' : '' ) . '> ';
@@ -13265,7 +13284,6 @@ $log_file_name = '';
 
 # default limit on result-list size
 $limit = 500;
-$minimum_score = 1;
 
 # max number of waiting connections 
 $listen_queue_length = 5;
@@ -13430,10 +13448,6 @@ while (1) {
         # change the output limit
         $limit = $1 if ($limit > 0);
 
-      } elsif (/^m (\d+)$/) {
-        # change the minimum score
-        $minimum_score = $1 if ($1 > 0);
-
       } elsif (/^n ([+&]?)([-]?\d+) (.+)$/) {
         # exact search on cooked names
         local ($op, $weight, $pat, @pos);
@@ -13567,7 +13581,6 @@ while (1) {
     }
     foreach $rec (@tops) {
       ($total, $pos) = unpack ('lN', $rec);
-      next if ( $total < $minimum_score );
       $_ = &get_item ($pos);
       print NS $total, '|', $_;
       #&log ("> $total|$_");
