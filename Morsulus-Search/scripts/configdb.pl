@@ -219,10 +219,6 @@ while (1) {
         # change the output limit
         $limit = $1 if ($limit > 0);
 
-      } elsif (/^m (\d+)$/) {
-        # change the minimum score
-        $minimum_score = $1 if ($1 > 0);
-
       } elsif (/^n ([+&]?)([-]?\d+) (.+)$/) {
         # exact search on cooked names
         local ($op, $weight, $pat, @pos);
@@ -356,7 +352,6 @@ while (1) {
     }
     foreach $rec (@tops) {
       ($total, $pos) = unpack ('lN', $rec);
-      next if ( $total < $minimum_score );
       $_ = &get_item ($pos);
       print NS $total, '|', $_;
       #&log ("> $total|$_");

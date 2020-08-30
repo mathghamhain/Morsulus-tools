@@ -379,16 +379,26 @@ $enctype = 'application/x-www-form-urlencoded';
 
 # Common client function to show display options for a search.
 sub display_options {
+  my ( $in_complex_search ) = shift;
   #global ($sort, @sorts, $era, @eras, $gloss_links, $arm_descs, @onoff);
   print '<div class="display-options">';
   print '<h3>Display Options:</h3><ul>';
 
-  print '<li>Sort items by ';
-  &select ('s', $sort, @sorts);
+  print '<ul>';
 
-  print '<li>Limit to a maximum of ';
+  if ( $in_complex_search ) {
+      print '<li><label>Minimum Score ';
+      print '<input type="text" name="m" value="', $minimum_score, '" size=4>';
+      print '</label>';
+  }
+
+  print '<li><label>Sort By ';
+  &select ('s', $sort, @sorts);
+  print '</label>';
+
+  print '<li><label>Result Limit ';
   print '<input type="text" name="l" value="', $limit, '" size=4>';
-  print ' items';
+  print '</label>';
 
   print '<li><label>';
   print '<input type="checkbox" name="d" value="SCA" ' . ( $era eq 'SCA' ? 'checked' : '' ) . '> ';

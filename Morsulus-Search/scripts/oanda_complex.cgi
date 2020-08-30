@@ -44,18 +44,21 @@ foreach $pair (split (/\&/, $ENV{'QUERY_STRING'})) {
   $era = $right if ($left eq 'd');
   $gloss_links = $right if ($left eq 'g');
   $limit = $right if ($left eq 'l');
+  $minimum_score = $right if ($left eq 'm');
   $sort = $right if ($left eq 's');
   $registered_status = $right if ($left eq 'rs');
   $raw_display_mode = $right if ($left eq 'raw');
 }
 $limit = 500
   if ($limit !~ /^\d+$/);
+$minimum_score = 1 if ( $minimum_score !~ /^[-]?\d+$/);
 
 &print_header ();
 print "<p>Criteria with no pattern are ignored. The weight and method are preloaded to make life simpler for mobile users.\n";
 
 $invalid = 0;
 $valid = 0;
+$maximum_score = 0;
 for $i (1 .. $criteria) {
     next if $p[$i] eq '';
   if ($weight[$i] !~ /^[+&-]?\d+$/) {
@@ -69,14 +72,19 @@ for $i (1 .. $criteria) {
       $invalid++;
     } else {
       $valid++;
+      $maximum_score += $weight[$i];
     }
   }
 }
+
+my $cutoff_score = ( $minimum_score < 1 ) ? $maximum_score + $minimum_score : $minimum_score;
+$cutoff_score = 1 if ( ! $cutoff_score or $cutoff_score !~ /^\d+$/ );
 
 if ($valid > 0 && $invalid == 0) {
   &connect_to_data_server ();
 
   print S 'l ', $limit;
+  
   for $i (1 .. $criteria) {
     next if $p[$i] eq '';
     if ($method[$i] eq 'name pattern') {
@@ -108,6 +116,7 @@ if ($valid > 0 && $invalid == 0) {
       print S "s $weight[$i] $p[$i]";
     }
   }
+  print S 't 0 ', $cutoff_score if ( $cutoff_score != 1 );
   print S 'EOF';
 
   $n = &get_matches ();
@@ -158,7 +167,7 @@ if ($valid && @validation_errors)
 print '<p>Maximum number of items to display ->';
 print '<input type="text" name="l" value="', $limit, '" size=3>';
 
-&display_options ();
+&display_options (1);
 
 print '<h3>Actions:</h3>';
 print '<input type="submit" value="search for items matching the above criteria">';
