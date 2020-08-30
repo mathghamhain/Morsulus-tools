@@ -29,6 +29,7 @@ $criteria = 10;
 $methods{''} = 'Select search type:';
 
 @sorts = ('name only', 'last action date', 'blazon');
+$sort = 'blazon';  # default
 
 foreach $pair (split (/\&/, $ENV{'QUERY_STRING'})) {
   ($left, $right) = split (/=/, $pair, 2);
