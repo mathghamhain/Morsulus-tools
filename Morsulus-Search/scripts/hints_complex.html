@@ -24,36 +24,10 @@ familiarize yourself with the following search methods:
   <a href="XXDescSearchUrlXX">use the form</a>
 </ul>
 
-<h3>Scoring Criteria</h3>
+<h3>Search Criteria</h3>
 <p>
 This portion of the form allows you to specify up to ten search
 criteria in order to find the registration(s) of interest to you.
-A certain number of registrations will match each criterion.
-Usually, the result of a complex search consists of all registrations
-which match one or more of the criteria specified.
-
-<p>
-In a search with multiple criteria, you may only be interested in
-registrations which match <em>all</em> the criteria.  These are, of course,
-included in the result.  To make these registrations easy to locate,
-each item in the search result is given a score based on how many
-criteria it satisfied.  Items matching all the criteria naturally
-have the highest score; when you sort the results by their score,
-you can easily locate these items.
-
-<p>
-Sometimes you may want to give some criteria more weight than others.
-For instance, suppose you are looking for a registration connected the name
-"Alaric" which probably contains a chief (but you're less certain
-of the charge).  In this case, you want the search results to appear in the
-following order:
-<ol>
-<li>registrations containing "Alaric" and a chief
-<li>registrations containing "Alaric" but no chief
-<li>other registrations
-</ol>
-You can achieve this results by giving the name pattern criterion a
-weight of 20 and the armory-description search a weight of only 10.
 
 <p>
 There are currently four methods available for specifying criteria:
@@ -70,10 +44,54 @@ There are currently four methods available for specifying criteria:
   <a href="XXDbFormatPageUrlXX#recordtype">file format document</a>.
 </ul>
 
+<h3>Scoring</h3>
+
+<p>
+Each criterion will match a certain number of registrations.
+Usually, the result of a complex search consists of all registrations
+which match one or more of the criteria specified.
+
+<p>
+In a search with multiple criteria, you may only be interested in
+registrations which match <em>all</em> or <em>almost all</em> of the criteria.  To make these registrations easy to locate,
+each item in the search result is given a score based on how many
+criteria it satisfied. 
+
+<p> 
+Items matching all the criteria naturally
+have the highest score; when you group the results by their score,
+you can easily locate these items. 
+The "Group By Score" option is enabled by default, but you can disable it if you want all of the results sorted together without regard for the score.
+
+<p>
+If you know that you only want to view results at or above a certain score, you can enter that value in the "Minimum Score" field. For example, if you entered five criteria, and you know you only want to see items which match at least four of them, you can set this field to "4".
+
+<p>
+As a shortcut, "Minimum Score" values that are less than one are used as an offset from the maximum possible score of a result that matched all of your criteria. For example, if you entered five criteria, you could set a minimum score of five by setting this field to "0", or specify a minimum score of four by setting it to "-1".
+
+<h3>Weights</h3>
+
+<p>
+Sometimes you may want to give some criteria more weight than others.
+For instance, suppose you are looking for a registration connected to the name
+"Alaric" which probably contains a chief (but you're less certain
+of the charge).  In this case, you might want the search results to appear in the
+following order:
+<ol>
+<li>registrations for names containing "Alaric" and armory with a chief
+<li>registrations for names containing "Alaric" but armory with no chief
+<li>other registrations
+</ol>
+<p>
+You can achieve this results by giving the "Alaric" name-pattern criterion a
+weight of 2 and the "CHIEF" armory-description criterion a weight of only 1. 
+<p>
+Matches with "Alaric" and a chief will have a score of 3. Those with "Alaric" but no chief will have a score of 2. Items with a chief but no "Alaric" will have a score of 1.
+
 <h3>Display Options</h3>
 <p>
 You can specify how you want your search results sorted.
-Currently there are two options:  by name and by date.
+There are three options:  by name, by date of last action, and by blazon.
 It is usually easiest to find names when they are sorted by name.
 You might want to sort by date if you know that the item
 you are looking for is particularly old.
