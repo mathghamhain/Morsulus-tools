@@ -327,25 +327,35 @@ sub key_install {
 
 # Common config function to install a text string in a file.
 
+sub confirm_if_interactive {
+  my $message = shift;
+  if ( $Y eq 'y' ) {
+    $_ = $Y
+  } else {
+    print "$message [$Y] ";
+    $_ = &input ($Y);
+  }
+}
+
 sub install {
   #global ($Y);
   local ($text, $path, $mode, $what) = @_;
 
   $text = &configure ($text);
 
-  printf "Installing $what at\n `$path'\n with mode 0%03o.\n", $mode;
-  if (-e $path) {
+  if (! -e $path) { 
+    printf "Installing $what with mode 0%03o at\n  $path\n", $mode;
+  } else {
+    printf "Installing $what with mode 0%03o over existing file at\n  $path\n", $mode;
     if (-w $path) {
-      print "Is it okay to overwrite existing file\n `$path'? [$Y] ";
-      $_ = &input ($Y);
+      confirm_if_interactive("Is it okay to overwrite existing file?");
       die "\nUnable to complete installation" unless (/^y/i);
     } elsif ($Rcs) {
       print "Checking out `$path'.\n";
       system ('co', '-l', $path);
       die if ($?);
     } else {
-      print "Is it okay to delete existing file\n `$path' first? [$Y] ";
-      $_ = &input ($Y);
+      confirm_if_interactive("Is it okay to delete existing file first?");
       die "\nUnable to complete installation" unless (/^y/i);
       unlink ($path) || die "Cannot delete `$path'";
     }
