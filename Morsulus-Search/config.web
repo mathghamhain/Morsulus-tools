@@ -12244,13 +12244,22 @@ sub sort_kingdom_keys {
 }
 
 print '<div style="margin-top: 1em">Kingdoms: ';
+print q{
+  <style>
+  .kingdom-checkboxes {
+    display: inline-block; vertical-align: top; columns: 3 auto;
+  }
+  @media ( max-width: 600px ) {
+    .kingdom-checkboxes {
+      columns: 2 auto;
+    }
+  }
+  </style>
+};
 
+print '<div class="kingdom-checkboxes">';
 my $counter = 0;
 foreach (sort sort_kingdom_keys keys %kingdom_name) {
-  if ( ( $counter ++ ) % 7 == 0 ) {
-      print '</div>' if $counter > 1;
-      print '<div style="display: inline-block; vertical-align: top; margin-right: 0.5em">';
-  }
   print '<div><label><input type="checkbox" name="k', $_, '" value="checked" ',
     $kingdom_set{$_}, '> ', remove_the( $kingdom_name{$_} ), '</label></div>';
 }
