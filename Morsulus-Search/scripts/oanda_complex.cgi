@@ -25,6 +25,13 @@ $criteria = 10;
 
 @methods = ('', 'armory description', 'name pattern', 'record type', 'blazon pattern', 'broad name', 'date and kingdom', 'notes pattern');
 
+sub capitalize_words {
+  local $_ = shift;
+  s/\b(\w)/uc($1)/eg;
+  "$_";
+}
+%methods = map { $_ => capitalize_words($_) } @methods;
+
 @sorts = ('name only', 'last action date', 'blazon');
 $sort = 'blazon';  # default
 
@@ -156,7 +163,7 @@ for $i (1 .. $criteria) {
 
   # method selector
   print 'method=';
-  &select ("m$i", $method[$i], @methods);
+  &select ("m$i", $method[$i], @methods, \%methods);
 
   print 'pattern=';
   print '<input type="text" name="p', $i, '" value="', $p[$i], '" size=60>';

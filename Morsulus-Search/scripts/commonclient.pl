@@ -444,9 +444,12 @@ sub select {
   local($name, $selected, @options) = @_;
   local($opt, $s);
 
+  my $label_map = pop @options if ( ref $options[-1] );
+
   print '<select name="', $name, '">';
   foreach $opt (@options) {
-    print '<option', ($opt eq $selected) ? ' selected' : '', '>', $opt;
+    print '<option value="', $opt, '"', ($opt eq $selected) ? ' selected' : '', '>', 
+        ( $label_map ? $label_map->{$opt} || $opt : $opt );
   }
   print '</select>';
 }

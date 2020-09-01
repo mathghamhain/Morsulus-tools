@@ -12263,6 +12263,13 @@ $criteria = 10;
 
 @methods = ('', 'armory description', 'name pattern', 'record type', 'blazon pattern', 'broad name', 'date and kingdom', 'notes pattern');
 
+sub capitalize_words {
+  local $_ = shift;
+  s/\b(\w)/uc($1)/eg;
+  "$_";
+}
+%methods = map { $_ => capitalize_words($_) } @methods;
+
 @sorts = ('name only', 'last action date', 'blazon');
 $sort = 'blazon';  # default
 
@@ -12394,7 +12401,7 @@ for $i (1 .. $criteria) {
 
   # method selector
   print 'method=';
-  &select ("m$i", $method[$i], @methods);
+  &select ("m$i", $method[$i], @methods, \%methods);
 
   print 'pattern=';
   print '<input type="text" name="p', $i, '" value="', $p[$i], '" size=60>';
@@ -13559,9 +13566,12 @@ sub select {
   local($name, $selected, @options) = @_;
   local($opt, $s);
 
+  my $label_map = pop @options if ( ref $options[-1] );
+
   print '<select name="', $name, '">';
   foreach $opt (@options) {
-    print '<option', ($opt eq $selected) ? ' selected' : '', '>', $opt;
+    print '<option value="', $opt, '"', ($opt eq $selected) ? ' selected' : '', '>', 
+        ( $label_map ? $label_map->{$opt} || $opt : $opt );
   }
   print '</select>';
 }
