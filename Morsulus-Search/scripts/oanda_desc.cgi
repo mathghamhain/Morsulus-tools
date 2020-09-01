@@ -33,15 +33,13 @@ if ($p ne '') {
   @matches = sort byblazon @matches;
 }
 
-print '<p>There are <a href="XXSearchMenuUrlXX">other search forms</a> available.';
-print 'For help using this form, please refer to the <a href="XXDescHintsPageUrlXX">hints page</a>.';
+print '<p>Enter an armory description code to search for.';
+print '<a href="XXDescHintsPageUrlXX">Hints are available for this form.</a>';
 
+print '<p>Armory Description: ';
+print '<input type="text" name="p" value="', $p, '" size="40">';
 
-print '<p>Enter a description of the armory for which you are searching ->;';
-print '<input type="text" name="p" value="', $p, '" size=30>';
-
-print '<h3>Actions:</h3>';
-print '<input type="submit" value="search for items matching the above description">';
+print '<input type="submit" value="Search">';
 print '</form>';
 
 if ($p ne '') {

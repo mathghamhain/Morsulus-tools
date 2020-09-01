@@ -83,14 +83,14 @@ if ($p ne '') {
   }
 }
   
-print '<p>There are <a href="XXSearchMenuUrlXX">other search forms</a> available.';
-print 'For help using this form, please refer to the <a href="XXDateHintsPageUrlXX">hints page</a>.';
+print '<p>Enter a date range and choose one or more kingdoms.';
+print '<a href="XXDateHintsPageUrlXX">Hints are available for this form.</a>';
 
-print '<p>Starting date ->;';
+print '<p>Date Range: ';
 &select ('m1', $month1, @month_name);
 print '<input type="text" name="y1" value="', $year1, '" size=4>';
 
-print '<p>Ending date ->;';
+print ' &ndash; ';
 &select ('m2', $month2, @month_name);
 print '<input type="text" name="y2" value="', $year2, '" size=4>';
 
@@ -104,15 +104,23 @@ sub sort_kingdom_keys {
     remove_the($kingdom_name{$a}) cmp remove_the($kingdom_name{$b})
 }
 
+print '<div style="margin-top: 1em">Kingdoms: ';
+
+my $counter = 0;
 foreach (sort sort_kingdom_keys keys %kingdom_name) {
-  print '<br><input type="checkbox" name="k', $_, '" value="checked" ',
-    $kingdom_set{$_}, '> ', remove_the( $kingdom_name{$_} );
+  if ( ( $counter ++ ) % 7 == 0 ) {
+      print '</div>' if $counter > 1;
+      print '<div style="display: inline-block; vertical-align: top; margin-right: 0.5em">';
+  }
+  print '<div><label><input type="checkbox" name="k', $_, '" value="checked" ',
+    $kingdom_set{$_}, '> ', remove_the( $kingdom_name{$_} ), '</label></div>';
 }
+print '</div>';
+print '</div>';
 
 &display_options ();
 
-print '<h3>Actions:</h3>';
-print '<input type="submit" value="search for items matching the dates/kingdoms above">';
+print '<input type="submit" value="Search">';
 print '</form>';
 
 if ($p ne '') {
