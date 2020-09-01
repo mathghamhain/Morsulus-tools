@@ -64,7 +64,6 @@ $scoresort = 1 if ( ! defined $minimum_score );
 $minimum_score = 1 if ( $minimum_score !~ /^[-]?\d+$/);
 
 &print_header ();
-print "<p>Criteria with no pattern are ignored. The weight and method are preloaded to make life simpler for mobile users.\n";
 
 $invalid = 0;
 $valid = 0;
@@ -152,11 +151,11 @@ if ($valid > 0 && $invalid == 0) {
     }
   }
 }
+
+print '<p>Enter one or more criteria to search for.';
+print '<a href="XXComplexHintsPageUrlXX">Hints are available for this form.</a>';
   
-print '<p>There are <a href="XXSearchMenuUrlXX">other search forms</a> available.';
-print 'For help using this form, please refer to the <a href="XXComplexHintsPageUrlXX">hints page</a>.';
-  
-print '<h3>Scoring criteria:</h3><div>';
+print '<div>';
 for $i (1 .. $criteria) {
   $weight[$i] = 1 if $weight[$i] eq undef;
   $method[$i] = 'armory description' unless $method[$i];
@@ -180,9 +179,7 @@ print '<input type="text" name="l" value="', $limit, '" size=3>';
 
 &display_options (1);
 
-print '<h3>Actions:</h3>';
-print '<input type="submit" value="search for items matching the above criteria">';
-print '<a href="', $cgi_url, '">[reset the scoring criteria]</a>';
+print '<input type="submit" value="Search">';
 print '</form>';
 
 if ($valid) {
