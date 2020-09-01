@@ -31,6 +31,7 @@ if ($opt eq '-r') {
 
 %pages = (
   'SearchMenu', 'search menu:index',  
+  'AboutOandaPage', 'about the ordinary and armorial:about_oanda',
   'NameHintsPage', 'name search hints:hints_name',
   'DateHintsPage', 'date search hints:hints_date',
   'DescHintsPage', 'armory description search hints:hints_desc',

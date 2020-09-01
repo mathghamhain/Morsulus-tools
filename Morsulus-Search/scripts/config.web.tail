@@ -290,6 +290,7 @@ $ConfigDbPath = &get_filepath ('XXConfigDbPathXX',
 #============================================#
 
 &page_install ($SearchMenu, 'SearchMenu');
+&page_install ($AboutOandaPage, 'AboutOandaPage');
 &page_install ($NameHintsPage, 'NameHintsPage');
 &page_install ($DateHintsPage, 'DateHintsPage');
 &page_install ($DescHintsPage, 'DescHintsPage');

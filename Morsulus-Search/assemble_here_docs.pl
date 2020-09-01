@@ -5,6 +5,7 @@ use File::Slurp;
 my %textblobs = (
     Helpers => 'commonconfig.pl',
     SearchMenu => 'index.html',
+    AboutOandaPage => 'about_oanda.html',
     NameHintsPage => 'hints_name.html',
     DateHintsPage => 'hints_date.html',
     DescHintsPage => 'hints_desc.html',
@@ -65,6 +66,7 @@ my %textblobs = (
 my @textnames = qw/
     Helpers
     SearchMenu
+    AboutOandaPage
     NameHintsPage
     DateHintsPage
     DescHintsPage
