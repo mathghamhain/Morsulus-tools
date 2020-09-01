@@ -377,6 +377,12 @@ $\ = "\n";
 # Set encoding type.
 $enctype = 'application/x-www-form-urlencoded';
 
+sub capitalize_words {
+  local $_ = shift;
+  s/\b(\w)/uc($1)/eg;
+  return $_;
+}
+
 # Common client function to show display options for a search.
 sub display_options {
   my ( $in_complex_search ) = shift;
@@ -390,13 +396,17 @@ sub display_options {
       print '<li><label>Minimum Score ';
       print '<input type="text" name="m" value="', $minimum_score, '" size=4>';
       print '</label>';
-      print '<li><label>Group By Score ';
+      print '<li><label>';
       print '<input type="checkbox" name="r" value="1" ' . ( $scoresort ? 'checked' : '' ) . '> ';
-      print '</label>';
+      print ' Group By Score</label>';
   }
+  
+  %sorts = map { $_ => capitalize_words($_) } @sorts;
+  $sorts{'name only'} = 'Name';
+  $sorts{'last action date'} = 'Date (Last Action)';
 
   print '<li><label>Sort By ';
-  &select ('s', $sort, @sorts);
+  &select ('s', $sort, @sorts, \%sorts);
   print '</label>';
 
   print '<li><label>Result Limit ';
