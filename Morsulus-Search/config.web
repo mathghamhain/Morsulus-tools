@@ -31,6 +31,7 @@ if ($opt eq '-r') {
 
 %pages = (
   'SearchMenu', 'search menu:index',  
+  'AboutOandaPage', 'about the ordinary and armorial:about_oanda',
   'NameHintsPage', 'name search hints:hints_name',
   'DateHintsPage', 'date search hints:hints_date',
   'DescHintsPage', 'armory description search hints:hints_desc',
@@ -516,20 +517,55 @@ XXSiteHeadXX
     <li>
         <a href="XXComplexSearchUrlXX"><strong>The Complex Search Form</strong></a> allows you to do sophisticated searches on the database by combining the results of multiple queries.  This form is tricky to use, but when configured properly can facilitate research and speed up armory conflict-checking.
     </li>
+    <li>
+        <a href="XXAboutOandaPageUrlXX"><strong>The About Page</strong></a> explains the purpose of this site, links to some helpful pages, and explains how to download the data files it uses.
+    </li>
 </ul>
 
-<h3>Related Web Pages:</h3>
+XXTrailerXX
+XXTrailer2XX
+XXCloseHtmlXX
 
-<ul>
-<li><a href="XXDbSymbolsPageUrlXX">Non-ASCII Symbols in the SCA Armorial Database</a>
-<li><a href="XXOverviewPageUrlXX">About SCA Heraldry</a>
-<li><a href="XXLimitPageUrlXX">Search Limits</a>
-<li><a href="XXDownloadPageUrlXX">Obtaining the SCA Armorial Database</a>
-<li><a href="XXGlossaryUrlXX">Glossary of Heraldic Terms</a>
-<li><a href="XXCopyrightUrlXX">View Database Copyright</a>
-<li><a href="XXVersionUrlXX">Identify Database Version</a>
-<li><a href="XXPrimerUrlXX">Heraldic Primer</a>
-</ul>
+XXEOFXX
+
+$AboutOandaPage = <<'XXEOFXX';
+<html>
+<head><title>Format of the SCA Armorial Database</title>
+<base href="XXAboutOandaPageUrlXX">XXHeadXX
+</head><body>
+XXSiteHeadXX
+
+    <h2>About the Ordinary &amp; Armorial</h2>
+    <p>
+        This O&amp;A is a web-based searchable database of the names and armory registered by <a href="http://heraldry.sca.org">the College of Arms</a> of <a href="http://sca.org">the Society for Creative Anachronism</a>.
+    </p>
+
+    <h3>About Heraldry in the SCA</h3>
+
+    <ul>
+        <li><a href="XXOverviewPageUrlXX">About SCA Heraldry</a></li>
+        <li><a href="http://heraldry.sca.org/">SCA College of Arms Website</a></li>
+        <li><a href="http://heraldry.sca.org/armory/newprimer/">Heraldic Primer</a> (Introduction to Armory)</li>
+    </ul>
+    
+    <h3>Site Usage Tips</h3>
+    
+    <ul>    
+        <li><a href="XXLimitPageUrlXX">Search Limits</a>
+        <li><a href="XXVersionUrlXX">Glossary of Heraldic Terms</a>
+    </ul>
+
+    <h3>Database Details and Download</h3>
+
+    <ul>
+    <li><a href="XXDownloadPageUrlXX">Obtaining the SCA Armorial Database</a>
+    <li><a href="XXDbFormatPageUrlXX">Format of the SCA Armorial Database</a>
+    <li><a href="XXCategoryFormatPageUrlXX">Format of the Category File</a>
+    <li><a href="XXDbSymbolsPageUrlXX">Non-ASCII Symbols in the SCA Armorial Database</a>
+    <li><a href="XXVersionUrlXX">Identify Database Version</a>
+        <li><a href="XXCopyrightUrlXX">View Database Copyright</a>
+    </ul>
+
 
 XXTrailerXX
 XXTrailer2XX
@@ -11992,7 +12028,7 @@ print '<p>Name Pattern: ';
 print '<input type="text" name="p" value="', $p, '" size="30">';
 
 &select ('b', $breadth, @breadths);
-&select ('c', $case, @cases);
+print '<label><input type="checkbox" name="c" value="case-sensitive" ' . ( $case eq 'case-sensitive' ? 'checked' : '' ) . '> Case-Sensitive</label>';
 
 &display_options ();
 
@@ -12082,7 +12118,7 @@ print '<a href="XXBpHintsPageUrlXX">Hints are available for this form.</a>';
 print '<p>Blazon Pattern: ';
 print '<input type="text" name="p" value="', $p, '" size="40">';
 
-&select ('c', $case, @cases);
+print '<label><input type="checkbox" name="c" value="case-sensitive" ' . ( $case eq 'case-sensitive' ? 'checked' : '' ) . '> Case-Sensitive</label>';
 
 &display_options ();
 
@@ -15710,6 +15746,7 @@ $ConfigDbPath = &get_filepath ('XXConfigDbPathXX',
 #============================================#
 
 &page_install ($SearchMenu, 'SearchMenu');
+&page_install ($AboutOandaPage, 'AboutOandaPage');
 &page_install ($NameHintsPage, 'NameHintsPage');
 &page_install ($DateHintsPage, 'DateHintsPage');
 &page_install ($DescHintsPage, 'DescHintsPage');

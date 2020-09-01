@@ -69,7 +69,7 @@ print '<a href="XXBpHintsPageUrlXX">Hints are available for this form.</a>';
 print '<p>Blazon Pattern: ';
 print '<input type="text" name="p" value="', $p, '" size="40">';
 
-&select ('c', $case, @cases);
+print '<label><input type="checkbox" name="c" value="case-sensitive" ' . ( $case eq 'case-sensitive' ? 'checked' : '' ) . '> Case-Sensitive</label>';
 
 &display_options ();
 
