@@ -157,6 +157,10 @@ for $i (1 .. $criteria) {
   print '<div>';
 
   # method selector
+<<<<<<< HEAD
+=======
+  print 'method=';
+>>>>>>> ae2ec65 (Capitalize complex search method names)
   &select ("m$i", $method[$i], @methods, \%methods);
 
   print '<input type="text" name="p', $i, '" value="', $p[$i], '" size="60" placeholder="Search pattern">';

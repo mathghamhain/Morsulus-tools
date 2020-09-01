@@ -16292,6 +16292,10 @@ for $i (1 .. $criteria) {
   print '<div>';
 
   # method selector
+<<<<<<< HEAD
+=======
+  print 'method=';
+>>>>>>> ae2ec65 (Capitalize complex search method names)
   &select ("m$i", $method[$i], @methods, \%methods);
 
   print '<input type="text" name="p', $i, '" value="', $p[$i], '" size="60" placeholder="Search pattern">';
@@ -19448,7 +19452,7 @@ $conf_file = '.configweb';
 
 $config{'XXPrimerUrlXX'} = 'http://heraldry.sca.org/armory/newprimer/';
 $config{'XXLoARUrlXX'} = 'http://heraldry.sca.org/loar';
-$config_version = '2024-09-26 (1:HEAD:225+)';
+$config_version = '2024-09-26 (1:HEAD:226+)';
 $config{'XXVersionXX'} = $config_version;
 $config{'XXHeadXX'} ||= '';
 $config{'XXSiteHeadXX'} ||= '';
