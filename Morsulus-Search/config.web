@@ -343,7 +343,7 @@ sub install {
 
   $text = &configure ($text);
 
-  if (! -e $path) { 
+  if (! -e $path) {
     printf "Installing $what with mode 0%03o at\n  $path\n", $mode;
   } else {
     printf "Installing $what with mode 0%03o over existing file at\n  $path\n", $mode;
@@ -15769,7 +15769,7 @@ print <<'EOF';
 Now I need you to answer a few questions about the database server.
 This may or may not be the same machine as the webserver, but
 it must be accessable via TCP/IP and it must have disk space to
-install the 5MB Armorial database.
+install the 18 MB Armorial database.
 
 For each question:
  +  The default answer is given in [brackets].
