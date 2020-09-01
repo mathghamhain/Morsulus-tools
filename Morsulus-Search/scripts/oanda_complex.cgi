@@ -28,9 +28,10 @@ $criteria = 10;
 sub capitalize_words {
   local $_ = shift;
   s/\b(\w)/uc($1)/eg;
-  "$_";
+  return $_;
 }
 %methods = map { $_ => capitalize_words($_) } @methods;
+$methods{''} = 'Select search type:';
 
 @sorts = ('name only', 'last action date', 'blazon');
 $sort = 'blazon';  # default
@@ -69,6 +70,7 @@ $invalid = 0;
 $valid = 0;
 $maximum_score = 0;
 for $i (1 .. $criteria) {
+    $weight[$i] = '1' if ( ! length $weight[$i] );
     next if $p[$i] eq '';
   if ($weight[$i] !~ /^[+&-]?\d+$/) {
     if ($method[$i] ne '') {
@@ -154,21 +156,20 @@ if ($valid > 0 && $invalid == 0) {
 print '<p>There are <a href="XXSearchMenuUrlXX">other search forms</a> available.';
 print 'For help using this form, please refer to the <a href="XXComplexHintsPageUrlXX">hints page</a>.';
   
-print '<h3>Scoring criteria:</h3><ol>';
+print '<h3>Scoring criteria:</h3><div>';
 for $i (1 .. $criteria) {
   $weight[$i] = 1 if $weight[$i] eq undef;
   $method[$i] = 'armory description' unless $method[$i];
-  print '<li>weight=';
-  print '<input type="text" name="w', $i, '" value="', $weight[$i], '" size=3>';
+  print '<div>';
 
   # method selector
-  print 'method=';
   &select ("m$i", $method[$i], @methods, \%methods);
 
-  print 'pattern=';
-  print '<input type="text" name="p', $i, '" value="', $p[$i], '" size=60>';
+  print '<input type="text" name="p', $i, '" value="', $p[$i], '" size="60" placeholder="Search pattern">';
+
+  print '<input type="text" name="w', $i, '" value="', ( $weight[$i] == 1 ? '' : $weight[$i] ), '" size="6" placeholder="Weight">';
+  print '</div>';
 }
-print '</ol>';
 if ($valid && @validation_errors)
 {
     print '<p>Description validation errors:';
