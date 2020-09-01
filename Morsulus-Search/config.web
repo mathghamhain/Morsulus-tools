@@ -13637,6 +13637,14 @@ sub get_matches {
   close S;
   return $n;
 }
+
+sub print_and_clear {    
+    if ( $_[0] ) {
+        print " $_[0] ";
+        undef $_[0];
+    }
+}
+
   
 # Common client function to format an item into HTML.
 sub print_match {
@@ -13658,91 +13666,127 @@ sub print_match {
     $notes = $1.$3;
     $disp = $2;
   }
+  my ( $jointly, $transferred, $for, $holding, @notes );
+  if ($notes =~ /^\((.*)\)$/) {
+    foreach (split (/\)\(/, $1)) {
+        next if /^regid:/;
+      if (/^JB: (.+)$/ || /^JHN: (.*)$/) {
+          $jointly .= 'jointly with '. &name ($1) . ' ';
+      } elsif (/^\-?transferred to (the )?(.+)$/) {
+          $transferred = 'transferred to ' . $1 . &name ($2);
+      } elsif (/^For (the )?(.+)$/) {
+          $for = 'for ' . $1 . &name ($2);
+      } else {
+          push @notes, &escape ($_)
+      }
+    }
+  }
+
   @source = split (/-/, $source);
-  print '</ul><li>', &name ($name), '<ul>' if ($name ne $prev_name);
-  print '<li>';
+  print '</ul><li class="reg-name">', &name ($name), '<ul>' if ($name ne $prev_name);
+  print '<li class="reg-item">';
   if ($type eq 'Nc') {
-    print 'This name';
+    print '<span class="reg-details">';
+    print 'Name';
     if ($source =~ /-/) {
-      print ', registered ', &source ($source[0]), ',';
+      print ' registered ', &source ($source[0]), ',';
       $source = $source[1];
     }
     print ' was corrected to ', &name ($text);
-    print ' ', &source ($source), '.';
+    print ' in ', &source ($source), '.';
+    print '</span>';
 
   } elsif ($type eq 'BNc') {
-    print 'This branch-name';
+    print '<span class="reg-details">';
+    print 'Branch name';
     if ($source =~ /-/) {
-      print ', registered ', &source ($source[0]), ',';
+      print ' registered ', &source ($source[0]), ',';
       $source = $source[1];
     }
     print ' was corrected to ', &name ($text);
-    print ' ', &source ($source), '.';
+    print ' in ', &source ($source), '.';
+    print '</span>';
 
   } elsif ($type eq 'u') {
-    print 'This branch name';
+    print '<span class="reg-details">';
+    print 'Branch name';
     if ($source =~ /-/) {
-      print ', registered ', &source ($source[0]), ',';
+      print ' registered ', &source ($source[0]), ', then ';
       $source = $source[1];
     }
-    print ' was updated to ', &name ($text);
-    print ' ', &source ($source), '.';
+    print ' updated to ', &name ($text);
+    print ' in ', &source ($source), '.';
+    print '</span>';
 
   } elsif ($type eq 'ANC') {
-    print 'This alternate name';
+    print '<span class="reg-details">';
+    print 'Alternate name';
     if ($source =~ /-/) {
-      print ', registered ', &source ($source[0]), ',';
+      print ' registered ', &source ($source[0]), ', then';
       $source = $source[1];
     }
-    print ' was changed to ', &name ($text);
-    print ' ', &source ($source), '.';
+    print ' changed to ', &name ($text);
+    print ' in ', &source ($source), '.';
+    print '</span>';
 
   } elsif ($type eq 'HNC') {
-    print 'This household name';
+      print '<span class="reg-details">';
+      print 'Household name';
     if ($source =~ /-/) {
-      print ', registered ', &source ($source[0]), ',';
+      print ' registered ', &source ($source[0]), ', then ';
       $source = $source[1];
     }
-    print ' was changed to ', &name ($text);
+    print ' changed to ', &name ($text);
     print ' ', &source ($source), '.';
+    print '</span>';
 
   } elsif ($type eq 'OC') {
-    print 'This order name';
+      print '<span class="reg-details">';
+      print 'Order name';
     if ($source =~ /-/) {
-      print ', registered ', &source ($source[0]), ',';
+      print ' registered ', &source ($source[0]), ', then ';
       $source = $source[1];
     }
-    print ' was changed to ', &name ($text);
+    print ' changed to ', &name ($text);
     print ' ', &source ($source), '.';
+    print '</span>';
 
   } elsif ($type eq 'BNC') {
     $text =~ s/^See //;
-    print 'This branch-name';
+    print '<span class="reg-details">';
+    print 'Branch name';
     if ($source =~ /-/) {
-      print ', registered ', &source ($source[0]), ',';
+      print ' registered ', &source ($source[0]), ', then';
       $source = $source[1];
     }
-    print ' was changed to ', &name ($text);
+    print ' changed to ', &name ($text);
     print ' ', &source ($source), '.';
+    print '</span>';
 
   } elsif ($type eq 'NC') {
     $text =~ s/^See //;
-    print 'This name';
+    print '<span class="reg-details">';
+    print 'Name';
     if ($source =~ /-/) {
-      print ', registered ', &source ($source[0]), ',';
+      print ' registered ', &source ($source[0]), ', then ';
       $source = $source[1];
     }
-    print ' was changed to ', &name ($text);
+    print ' changed to ', &name ($text);
     print ' ', &source ($source), '.';
+    print '</span>';
 
   } elsif ($type eq 'j') {
-    print 'This name was referenced ', &source ($source[0]);
+      print '<span class="reg-details">';
+      print 'Name referenced';
     print ' as joint registrant of a badge';
-    print ' with ', &name ($text), '.';
+    print ' with ', &name ($text);
+    print ' in ', &source ($source[0]), '.';
+    print '</span>';
 
   } elsif ($type eq 'R') {
     $text =~ s/^See (also )?//;
-    print 'This name was referenced ', &source ($source[0]);
+    print '<span class="reg-details">';
+    print 'Name referenced';
     if ($text =~ /^\"(.+)\"$/) {
       print ' in registrations by ';
       @targs = split (/\" or \"/, $1);
@@ -13751,61 +13795,85 @@ sub print_match {
         print ' and ', &name ($_);
       }
     } else {
-      print ' in a registration by ', &name ($text), '.';
+      print ' in a registration by ', &name ($text);
     }
+    print ' in ', &source ($source[0]), '.';
+    print '</span>';
 
   } elsif ($type eq 'vc' || $type eq 'Bvc') {
     if ($source !~ /-/) {
       $source[0] = $source[1];
       $source[1] = $source;
     }
-    print 'This appeared ', &source ($source[0]);
+    print '<span class="reg-details">';
+    print 'Name appeared ', &source ($source[0]);
     print ' as a mis-spelling of ', &name ($text), '. ';
     print 'The error was corrected ', &source ($source[1]);
+    print '</span>';
 
   } elsif ($type eq 'v' || $type eq 'Bv') {
-    print 'This appeared ', &source ($source[0]);
+      print '<span class="reg-details">';
+      print 'Appeared ', &source ($source[0]);
     print '.<br>It appears to have been a mis-spelling of ';
     print &name ($text), '.';
+    print '</span>';
 
   } elsif ($type eq 'BN') {
-    print 'This branch-name was registered ', &source ($source[0]);
+      print '<span class="reg-details">';
+      print 'Branch name registered ', &source ($source[0]);
     print ' and released ', &source ($source[1]) if ($source =~ /-/);
     print '.';
+    print '</span>';
 
   } elsif ($type eq 'N') {
-    print 'This name was registered ', &source ($source[0]);
+      print '<span class="reg-details">';
+      print 'Name was registered ', &source ($source[0]);
     print ' and released ', &source ($source[1]) if ($source =~ /-/);
     print '.';
+    print '</span>';
 
   } elsif ($type eq 't' || $type eq 'AN' || $type eq 'HN' || $type eq 'O') {
     $text =~ s/^For // if ($type eq 'AN');
-    print 'This ', $type_name{$type}, ' was registered to ';
+    print '<span class="reg-details">';
+    print ucfirst( $type_name{$type} ), ' was registered to ';
     print &name ($text), ' ', &source ($source[0]);
     print ' and ', $disp, ' ', &source ($source[1]) if ($source =~ /-/);
     print '.';
+    print '</span>';
 
   } elsif ($type eq 'BD') {
-    print 'Either the branch-name or the following arms';
-    print ' associated it (or both) were registered ', &source ($source[0]);
+    print '<b class="reg-blazon">', &blazon ($text), '</b>';
+    print '<br><span class="reg-details">';
+    print 'Either the branch name or these arms';
+    print ' (or both) were registered ', &source ($source[0]);
     print ' and ', $disp, ' ', &source ($source[1]) if ($source =~ /-/);
-    print ':<br><b>', &blazon ($text), '</b>';
+    print '</span>';
 
   } elsif ($type =~ /^[ABDS]$/) {
     $type =~ tr/ABDS/abds/;
-    print 'Either the name or the following ', $type_name{$type};
-    print ' associated it (or both) were registered ', &source ($source[0]);
+    print '<b class="reg-blazon">', &blazon ($text), '</b>';
+    print '<br><span class="reg-details">';
+    print 'Either the name or the ', $type_name{$type};
+    print ' (or both) were registered ', &source ($source[0]);
     print ' and ', $disp, ' ', &source ($source[1]) if ($source =~ /-/);
-    print ':<br><b>', &blazon ($text), '</b>';
+    print '</span>';
 
   } elsif ($type =~ /^[abdgs]$/ || $type eq 'D?') {
-    print 'The following ', $type_name{$type};
-    print ' associated with this name was registered ', &source ($source[0]);
-    print ' and ', $disp, ' ', &source ($source[1]) if ($source =~ /-/);
-    print ':<br><b>', &blazon ($text), '</b>';
+    print '<b class="reg-blazon">', &blazon ($text), '</b>';
+    print '<br><span class="reg-details">';
+    print ucfirst( $type_name{$type} );
+    print ' registered ';
+    print_and_clear( $for );
+    print_and_clear( $jointly );
+    print "in " . &source ($source[0]);
+    print ', then ', $disp, ' in ', &source ($source[1]) if ($source =~ /-/);
+    print '.';
+    print '</span>';
 
   } elsif ($type eq 'W') {
-    print 'An heraldic will was filed with Laurel ', source($source[0]);
+      print '<span class="reg-details">';
+      print 'Heraldic will filed ', source($source[0]);
+      print '</span>';
 
   } elsif ($type eq 'C') {
     print 'A database comment:<br>', $text;
@@ -13817,19 +13885,9 @@ sub print_match {
     print "An unknown record (type=`$type') was found in the database.";
   }
 
-  if ($notes =~ /^\((.*)\)$/) {
-    foreach (split (/\)\(/, $1)) {
-        next if /^regid:/;
-      if (/^JB: (.+)$/ || /^JHN: (.*)$/) {
-        print '<br>registered jointly with ', &name ($1);
-      } elsif (/^\-?transferred to (the )?(.+)$/) {
-        print '<br>transferred to ', $1, &name ($2);
-      } elsif (/^For (the )?(.+)$/) {
-        print '<br>for ', $1, &name ($2);
-      } else {
-        print '<br>', &escape ($_);
-      }
-    }
+  foreach my $note ( $jointly, $transferred, $for, @notes ) {
+      next unless $note;
+      print '<br>', $note;
   }
 
   if (@descs > 0 && $arm_descs eq 'enabled') {
@@ -14080,7 +14138,7 @@ sub source {
     }
     local ($mn) = $month_name[$month];
     $out = "in $mn of $year";
-    $out .= " (via $kingdom_name{$kingdom})" if ($kingdom ne '');
+    $out .= " via $kingdom_name{$kingdom}" if ($kingdom ne '');
     return $out if ($date_links eq 'disabled');
 
     local ($sopt) = "y1=$ce&m1=$mn&y2=$ce&m2=$mn";
