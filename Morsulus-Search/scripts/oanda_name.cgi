@@ -43,15 +43,16 @@ print '<input type="submit" value="Search">';
 print '</form>';
 
 my %stats_descriptions = (
-    'armory-total-current' => "Total Current Armory",
     'armory-badge-current' => "Badges (current)",
     'armory-badge-obsolete' => "Badges (obsolete)",
     'armory-device-current' => "Devices (current)",
     'armory-device-obsolete' => "Devices (obsolete)",
-    'name-total-current' => "Total Current Name",
     'name-personal-current' => "Personal Name (current)",
     'name-personal-obsolete' => "Personal Name (obsolete)",
     'name-personal-change' => "Personal Name (change)",
+    'name-nonpersonal-current' => "Non-personal Name (current)",
+    'name-nonpersonal-obsolete' => "Non-personal Name (obsolete)",
+    'name-nonpersonal-change' => "Non-personal Name (change)",
 );
 
 if ($p ne '') {
@@ -59,10 +60,10 @@ if ($p ne '') {
   &print_results ('name="<i>'.&escape($p).'</i>"', $n, $scoresort, 1);
 
   if ($n) {
-    print "<p><b>Total Registrations:</b>";
+    my $name_total_current = $result_stats{'name-personal-current'} + $result_stats{'name-nonpersonal-current'};
+    my $armory_total_current = $result_stats{'armory-badge-current'} + $result_stats{'armory-device-current'};
+    print "<p><b>Total Registrations: $name_total_current Names, $armory_total_current Armory</b>";
     print "<ul>";
-    $result_stats{'armory-total-current'} = $result_stats{'armory-badge-current'} + $result_stats{'armory-device-current'};
-    $result_stats{'name-total-current'} = $result_stats{'name-personal-current'} + $result_stats{'name-nonpersonal-current'};
     foreach ( sort keys %result_stats ) {
       print "<li> " . ( /total/ ? '<b>' : '' ) . ( $stats_descriptions{$_} || $_ ) . ": $result_stats{ $_ }" . ( /total/ ? '</b>' : '' );
     }

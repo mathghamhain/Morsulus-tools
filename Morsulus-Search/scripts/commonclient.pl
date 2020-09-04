@@ -388,7 +388,7 @@ sub display_options {
   my ( $in_complex_search ) = shift;
   #global ($sort, @sorts, $era, @eras, $gloss_links, $arm_descs, @onoff);
   print '<div class="display-options">';
-  print '<h3>Display Options:</h3><ul>';
+  print '<h3>Display Options:</h3><ul">';
 
   print '<ul>';
 
@@ -514,6 +514,7 @@ sub print_match {
   if ($notes =~ /^(.*)[(]-([^)]+)[)](.*)/) {
     $notes = $1.$3;
     $disp = $2;
+    $disp =~ s/(transferred to )(the )?(.+)$/$1 . $2 . &name($3)/e;
   }
   my ( $jointly, $transferred, $for, $holding, @notes );
   if ($notes =~ /^\((.*)\)$/) {
@@ -731,7 +732,7 @@ sub print_match {
     print ', then ', $disp, ' in ', &source ($source[1]) if ($source =~ /-/);
     print '.';
     print '</span>';
-    $result_stats{'armory-' . $type_name{$type} . '-' . ($source =~ /-/ ? 'obsolete' : 'current') } ++;
+    $result_stats{'armory-' . $type_name{$type} . '-' . ($source =~ /-/ && $disp ne 'reblazoned' ? 'obsolete' : 'current') } ++;
 
   } elsif ($type eq 'W') {
       print '<span class="reg-details">';
@@ -833,7 +834,7 @@ sub print_results {
 
   #  Print each matching item.
 
-  print '<ul><ul>'
+  print '<ul class="results"><ul>'
     if ($n > 0);
   $prev_name = '';
   $prev_score = 0;
@@ -1014,7 +1015,7 @@ sub source {
         $sopt .= "&k$kn=checked";
       }
     }
-    return qq'<a href="XXDateSearchUrlXX?$sopt">$out</a>';
+    return qq'<a class="search-date" href="XXDateSearchUrlXX?$sopt">$out</a>';
   }
 } # sub source
 
