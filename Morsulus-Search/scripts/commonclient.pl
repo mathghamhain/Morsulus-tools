@@ -489,7 +489,7 @@ sub print_and_clear {
   
 # Common client function to format an item into HTML.
 sub print_match {
-  #global ($prev_name, $arm_descs);
+  #global ($prev_name, $arm_descs, %result_stats);
   local ($name, $source, $type, $text, $notes, @descs) = @_;
   local ($\) = '';
   local (@source);
@@ -550,6 +550,7 @@ sub print_match {
     print ' updated to ', &name ($text);
     print ' in ', &source ($source), '.';
     print '</span>';
+    $result_stats{'name-nonpersonal-change'} ++;
 
   } elsif ($type eq 'ANC') {
     print '<span class="reg-details">';
@@ -561,6 +562,7 @@ sub print_match {
     print ' changed to ', &name ($text);
     print ' in ', &source ($source), '.';
     print '</span>';
+    $result_stats{'name-personal-change'} ++;
 
   } elsif ($type eq 'HNC') {
       print '<span class="reg-details">';
@@ -572,6 +574,7 @@ sub print_match {
     print ' changed to ', &name ($text);
     print ' ', &source ($source), '.';
     print '</span>';
+    $result_stats{'name-nonpersonal-change'} ++;
 
   } elsif ($type eq 'OC') {
       print '<span class="reg-details">';
@@ -583,6 +586,7 @@ sub print_match {
     print ' changed to ', &name ($text);
     print ' ', &source ($source), '.';
     print '</span>';
+    $result_stats{'name-nonpersonal-change'} ++;
 
   } elsif ($type eq 'BNC') {
     $text =~ s/^See //;
@@ -595,6 +599,7 @@ sub print_match {
     print ' changed to ', &name ($text);
     print ' ', &source ($source), '.';
     print '</span>';
+    $result_stats{'name-nonpersonal-change'} ++;
 
   } elsif ($type eq 'NC') {
     $text =~ s/^See //;
@@ -607,6 +612,7 @@ sub print_match {
     print ' changed to ', &name ($text);
     print ' ', &source ($source), '.';
     print '</span>';
+    $result_stats{'name-personal-change'} ++;
 
   } elsif ($type eq 'j') {
       print '<span class="reg-details">';
@@ -615,6 +621,7 @@ sub print_match {
     print ' with ', &name ($text);
     print ' in ', &source ($source[0]), '.';
     print '</span>';
+    $result_stats{'armory-badge-joint'} ++;
 
   } elsif ($type eq 'R') {
     $text =~ s/^See (also )?//;
@@ -657,6 +664,7 @@ sub print_match {
     print ' and released ', &source ($source[1]) if ($source =~ /-/);
     print '.';
     print '</span>';
+    $result_stats{'name-nonpersonal-' . ($source =~ /-/ ? 'obsolete' : 'current') } ++;
 
   } elsif ($type eq 'N') {
       print '<span class="reg-details">';
@@ -664,6 +672,7 @@ sub print_match {
     print ' and released ', &source ($source[1]) if ($source =~ /-/);
     print '.';
     print '</span>';
+    $result_stats{'name-personal-' . ($source =~ /-/ ? 'obsolete' : 'current') } ++;
 
   } elsif ($type eq 't' || $type eq 'AN' || $type eq 'HN' || $type eq 'O') {
     $text =~ s/^For // if ($type eq 'AN');
@@ -673,6 +682,7 @@ sub print_match {
     print ' and ', $disp, ' ', &source ($source[1]) if ($source =~ /-/);
     print '.';
     print '</span>';
+    $result_stats{'name-' . ( $type eq 'AN' ? 'personal' : 'nonpersonal' ) . '-' . ($source =~ /-/ ? 'obsolete' : 'current') } ++;
 
   } elsif ($type eq 'BD') {
     print '<b class="reg-blazon">', &blazon ($text), '</b>';
@@ -681,6 +691,8 @@ sub print_match {
     print ' (or both) were registered ', &source ($source[0]);
     print ' and ', $disp, ' ', &source ($source[1]) if ($source =~ /-/);
     print '</span>';
+    $result_stats{'name-nonpersonal-' . ($source =~ /-/ ? 'obsolete' : 'current') } ++;
+    $result_stats{'armory-device-' . ($source =~ /-/ ? 'obsolete' : 'current') } ++;
 
   } elsif ($type =~ /^[ABDS]$/) {
     $type =~ tr/ABDS/abds/;
@@ -690,6 +702,7 @@ sub print_match {
     print ' (or both) were registered ', &source ($source[0]);
     print ' and ', $disp, ' ', &source ($source[1]) if ($source =~ /-/);
     print '</span>';
+    $result_stats{'armory-' . $type_name{$type} . '-' . ($source =~ /-/ ? 'obsolete' : 'current') } ++;
 
   } elsif ($type =~ /^[abdgs]$/ || $type eq 'D?') {
     print '<b class="reg-blazon">', &blazon ($text), '</b>';
@@ -702,11 +715,13 @@ sub print_match {
     print ', then ', $disp, ' in ', &source ($source[1]) if ($source =~ /-/);
     print '.';
     print '</span>';
+    $result_stats{'armory-' . $type_name{$type} . '-' . ($source =~ /-/ ? 'obsolete' : 'current') } ++;
 
   } elsif ($type eq 'W') {
       print '<span class="reg-details">';
       print 'Heraldic will filed ', source($source[0]);
       print '</span>';
+      $result_stats{'admin-will-' . ($source =~ /-/ ? 'obsolete' : 'current') } ++;
 
   } elsif ($type eq 'C') {
     print 'A database comment:<br>', $text;
@@ -772,7 +787,7 @@ sub print_lost {
 # Common client function to print messages and matching items.
 sub print_results {
   #global (@matches, @lost, $prev_name, $prev_score);
-  local ($criteria, $n, $scoresort) = @_;
+  local ($criteria, $n, $scoresort, $accumulate_stats) = @_;
   local ($_, @item, $total_lost, $score);
 
   print '<h3>Results:</h3>';
