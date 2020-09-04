@@ -13963,9 +13963,25 @@ sub print_match {
 
 sub print_messages {
   #global (@messages);
+  
+  my @errors;
+  while ( $messages[0] =~ /^ERROR/ ) {
+      my $error;
+      while ( $messages[0] ) {
+          $error .= shift @messages;
+      }
+      shift @messages;
+      push @errors, $error;
+  }
+
+  foreach (@errors) {
+      print '<pre class="error">';
+      print $_;
+      print '</pre>';
+  }
 
   if (@messages > 0) {
-    print '<pre>';
+    print '<pre class="notice">';
     foreach (@messages) {
       print $_;
     }
