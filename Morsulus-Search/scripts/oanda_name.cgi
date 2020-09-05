@@ -53,6 +53,9 @@ my %stats_descriptions = (
     'name-nonpersonal-current' => "Non-personal Name (current)",
     'name-nonpersonal-obsolete' => "Non-personal Name (obsolete)",
     'name-nonpersonal-change' => "Non-personal Name (change)",
+    'name-title-current' => "Title (current)",
+    'name-title-obsolete' => "Title (obsolete)",
+    'name-title-change' => "Title (change)",
 );
 
 if ($p ne '') {
@@ -60,9 +63,20 @@ if ($p ne '') {
   &print_results ('name="<i>'.&escape($p).'</i>"', $n, $scoresort, 1);
 
   if ($n) {
-    my $name_total_current = $result_stats{'name-personal-current'} + $result_stats{'name-nonpersonal-current'};
-    my $armory_total_current = $result_stats{'armory-badge-current'} + $result_stats{'armory-device-current'};
-    print "<p><b>Total Registrations: $name_total_current Names, $armory_total_current Armory</b>";
+      my %current_totals = (
+        'name' => $result_stats{'name-personal-current'} + $result_stats{'name-nonpersonal-current'},
+        'armory' => $result_stats{'armory-badge-current'} + $result_stats{'armory-device-current'},
+        'title' => $result_stats{'name-title-current'},          
+      );
+    my @total_items;
+    foreach ( qw(name armory title) ) {
+        if ( $current_totals{$_} ) {
+            push @total_items, $current_totals{$_} . " " . $_
+        }
+    }
+    print "<p><b>Total Registrations: ";
+    print join(', ', @total_items);
+    print '</b>';
     print "<ul>";
     foreach ( sort keys %result_stats ) {
       print "<li> " . ( /total/ ? '<b>' : '' ) . ( $stats_descriptions{$_} || $_ ) . ": $result_stats{ $_ }" . ( /total/ ? '</b>' : '' );
