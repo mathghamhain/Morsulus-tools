@@ -865,7 +865,7 @@ sub print_results {
           print 'is one matching item';
         }
         print ' with a score of ', $score;
-        print ':</h4><ul><ul>';
+        print ':</h4><ul class="results"><ul>';
         $prev_name = '';
         $prev_score = $score;
       }
