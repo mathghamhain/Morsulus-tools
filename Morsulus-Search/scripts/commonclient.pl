@@ -1167,8 +1167,8 @@ sub print_trailer {
   print "\n";
 }
 
-sub fixcase # make heading UC, features lc
-{
+# make heading UC, features lc
+sub fixcase {
     my $desc = shift;
     join '|', map {
         s/\s+/ /g;
