@@ -699,7 +699,7 @@ sub print_match {
     print ' and ', $disp, ' ', &source ($source[1]) if ($source =~ /-/);
     print '.';
     print '</span>';
-    $result_stats{'name-' . ( $type eq 'AN' ? 'personal' : 'nonpersonal' ) . '-' . ($source =~ /-/ ? 'obsolete' : 'current') } ++;
+    $result_stats{'name-' . ( $type eq 'AN' ? 'personal' : $type eq 't' ? 'title' : 'nonpersonal' ) . '-' . ($source =~ /-/ ? 'obsolete' : 'current') } ++;
 
   } elsif ($type eq 'BD') {
     print '<b class="reg-blazon">', &blazon ($text), '</b>';
@@ -732,7 +732,7 @@ sub print_match {
     print ', then ', $disp, ' in ', &source ($source[1]) if ($source =~ /-/);
     print '.';
     print '</span>';
-    $result_stats{'armory-' . $type_name{$type} . '-' . ($source =~ /-/ && $disp ne 'reblazoned' ? 'obsolete' : 'current') } ++;
+    $result_stats{'armory-' . $type_name{$type} . '-' . ($source =~ /-/ ? 'obsolete' : 'current') } ++;
 
   } elsif ($type eq 'W') {
       print '<span class="reg-details">';
