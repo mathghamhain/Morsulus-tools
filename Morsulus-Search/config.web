@@ -11816,20 +11816,15 @@ print '<input type="text" name="p" value="', $p, '" size="30">';
 print '<input type="submit" value="Search">';
 print '</form>';
 
-my %stats_descriptions = (
-    'armory-badge-current' => "Badges (current)",
-    'armory-badge-obsolete' => "Badges (obsolete)",
-    'armory-device-current' => "Devices (current)",
-    'armory-device-obsolete' => "Devices (obsolete)",
-    'name-personal-current' => "Personal Name (current)",
-    'name-personal-obsolete' => "Personal Name (obsolete)",
-    'name-personal-change' => "Personal Name (change)",
-    'name-nonpersonal-current' => "Non-personal Name (current)",
-    'name-nonpersonal-obsolete' => "Non-personal Name (obsolete)",
-    'name-nonpersonal-change' => "Non-personal Name (change)",
-    'name-title-current' => "Title (current)",
-    'name-title-obsolete' => "Title (obsolete)",
-    'name-title-change' => "Title (change)",
+my @stat_groups = (
+    [ 'armory-badge', 'Badge' ],
+    [ 'armory-device', 'Device' ],
+    [ 'name-personal', 'Personal Name' ],
+    [ 'name-nonpersonal', 'Non-personal' ],
+    [ 'name-title', 'Title' ],
+);
+my @statuses = (
+    'current', 'change', 'obsolete'
 );
 
 if ($p ne '') {
@@ -11838,24 +11833,39 @@ if ($p ne '') {
 
   if ($n) {
       my %current_totals = (
-        'name' => $result_stats{'name-personal-current'} + $result_stats{'name-nonpersonal-current'},
-        'armory' => $result_stats{'armory-badge-current'} + $result_stats{'armory-device-current'},
-        'title' => $result_stats{'name-title-current'},          
+          'name' => $result_stats{'name-personal-current'} + $result_stats{'name-nonpersonal-current'},
+          'armory' => $result_stats{'armory-badge-current'} + $result_stats{'armory-device-current'},
+          'title' => $result_stats{'name-title-current'},          
       );
-    my @total_items;
-    foreach ( qw(name armory title) ) {
-        if ( $current_totals{$_} ) {
-            push @total_items, $current_totals{$_} . " " . $_
-        }
-    }
-    print "<p><b>Total Registrations: ";
-    print join(', ', @total_items);
-    print '</b>';
-    print "<ul>";
-    foreach ( sort keys %result_stats ) {
-      print "<li> " . ( /total/ ? '<b>' : '' ) . ( $stats_descriptions{$_} || $_ ) . ": $result_stats{ $_ }" . ( /total/ ? '</b>' : '' );
-    }
-    print "</ul>";
+      my @total_items;
+      foreach ( qw(name armory title) ) {
+          if ( $current_totals{$_} ) {
+              push @total_items, $current_totals{$_} . " " . $_
+          }
+      }
+      my @status_items;
+      foreach my $group ( @stat_groups ) {
+          my @counts;
+          foreach my $status ( @statuses ) {
+              my $count = $result_stats{ $group->[0] . '-' . $status };
+              if ( $count ) {
+                  push @counts, "$count $status";
+              }
+          }
+          if ( @counts ) {
+              push @status_items, $group->[1] . ": " . join(', ', @counts)
+          }
+      }
+      if ( @total_items or @status_items ) {
+          print "<p><b>Total Registrations: ";
+          print join(', ', @total_items);
+          print '</b>';
+          print "<ul>";
+          foreach ( @status_items ) {
+              print "<li> $_ </li>" ;
+          }
+          print "</ul>";
+      }
   }
 
   if ($n == 0) {
