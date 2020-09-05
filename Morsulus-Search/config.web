@@ -13434,8 +13434,8 @@ sub print_trailer {
   print "\n";
 }
 
-sub fixcase # make heading UC, features lc
-{
+# make heading UC, features lc
+sub fixcase {
     my $desc = shift;
     join '|', map {
         my ($hdg, $features) = split(/:/, $_, 2);
