@@ -11820,8 +11820,8 @@ my @stat_groups = (
     [ 'armory-badge', 'Badge' ],
     [ 'armory-device', 'Device' ],
     [ 'name-personal', 'Personal Name' ],
-    [ 'name-nonpersonal', 'Non-personal' ],
-    [ 'name-title', 'Title' ],
+    [ 'name-nonpersonal', 'Non-personal Name' ],
+    [ 'name-title', 'Heraldic Title' ],
 );
 my @statuses = (
     'current', 'change', 'obsolete'
