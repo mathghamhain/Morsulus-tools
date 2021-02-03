@@ -39,6 +39,8 @@ if ($opt eq '-r') {
   'BpHintsPage', 'blazon pattern search hints:hints_bp',
   'ComplexHintsPage', 'complex search hints:hints_complex',
   'OverviewPage', 'about SCA heraldry:heraldry_overview',
+  'RecordCodesPage', 'record type codes:codes_records',
+  'KingdomCodesPage', 'kingdom codes:codes_kingdoms',
   'LimitPage', 'about search limits:search_limits',
   'DownloadPage', 'about obtaining the database:data_obtain',
   'DbFormatPage', 'about the database format:data_format',
@@ -1104,7 +1106,7 @@ There are currently four methods available for specifying criteria:
 <li>record type:  a list of database item-types,
   separated by stiles (|), such as "AN" or "B|b".
   A complete list of record-types appears in the
-  <a href="XXDbFormatPageUrlXX#recordtype">file format document</a>.
+  <a href="XXRecordCodesPageUrlXX#recordtype">Record Type Codes</a> page.
 </ul>
 
 <h3>Scoring</h3>
@@ -1288,6 +1290,326 @@ heraldry</em>.
 <ul>
 <li><a href="http://heraldry.sca.org/">SCA Heraldry Links</a>
 </ul>
+
+XXTrailerXX
+XXTrailer2XX
+XXCloseHtmlXX
+
+XXEOFXX
+
+$KingdomCodesPage = <<'XXEOFXX';
+<html>
+<head><title>Kingdom Codes</title>
+<base href="XXKingdomCodesPageUrlXX">XXHeadXX
+</head><body>
+XXSiteHeadXX
+
+<h2>Kingdom Codes</h2>
+
+<p>
+    The "date and kingdom" function in the <a href="XXComplexSearchUrlXX">Complex Search Form</a> allows you to filter records based on the kingdom from which they were submitted.
+</p>
+
+<p>
+    Enter one or more kingdom codes from the below table, in any order, with no punctuation between them. 
+</p>
+
+<p>
+    For example, a search for <code>EHQ</code> would match records from the East, &AElig;thelmearc, and Atlantia.
+</p>
+
+<style>
+    table.lookup { border-collapse: collapse; }
+    table.lookup thead tr { background: #eee; border-bottom: 1px solid #999; }
+    table.lookup tr { vertical-align: top; }
+    table.lookup tbody tr { border-bottom: 1px solid #ddd; }
+    table.lookup tbody tr:nth-child(even) { background: #fcfcfc; }
+    table.lookup th { text-align: left; }
+    table.lookup th,
+    table.lookup td { padding: 2px 5px; }
+    table.lookup tr:hover td { background: #ffc;}
+</style>
+
+<table class="lookup">
+    <thead>
+        <tr>
+            <th>
+                Code
+            </th>
+            <th>
+                Kingdom
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td> H </td>
+            <td> &AElig;thelmearc </td>
+        </tr>
+        <tr>
+            <td> N </td>
+            <td> An Tir </td>
+        </tr>
+        <tr>
+            <td> X </td>
+            <td> Ansteorra </td>
+        </tr>
+        <tr>
+            <td> R </td>
+            <td> Artemisia </td>
+        </tr>
+        <tr>
+            <td> A </td>
+            <td> Atenveldt </td>
+        </tr>
+        <tr>
+            <td> Q </td>
+            <td> Atlantia </td>
+        </tr>
+        <tr>
+            <td> V </td>
+            <td> Avacal </td>
+        </tr>
+        <tr>
+            <td> C </td>
+            <td> Caid </td>
+        </tr>
+        <tr>
+            <td> K </td>
+            <td> Calontir </td>
+        </tr>
+        <tr>
+            <td> D </td>
+            <td> Drachenwald </td>
+        </tr>
+        <tr>
+            <td> m </td>
+            <td> Ealdormere </td>
+        </tr>
+        <tr>
+            <td> E </td>
+            <td> East </td>
+        </tr>
+        <tr>
+            <td> G </td>
+            <td> Gleann Abhann </td>
+        </tr>
+        <tr>
+            <td> L </td>
+            <td> Laurel or SCA (not submitted through a specific kingdom) </td>
+        </tr>
+        <tr>
+            <td> w </td>
+            <td> Lochac </td>
+        </tr>
+        <tr>
+            <td> S </td>
+            <td> Meridies </td>
+        </tr>
+        <tr>
+            <td> M </td>
+            <td> Middle </td>
+        </tr>
+        <tr>
+            <td> n </td>
+            <td> Northshield </td>
+        </tr>
+        <tr>
+            <td> O </td>
+            <td> Outlands </td>
+        </tr>
+        <tr>
+            <td> T </td>
+            <td> Trimaris </td>
+        </tr>
+        <tr>
+            <td> W </td>
+            <td> West </td>
+        </tr>
+    </tbody>
+</table>
+
+XXTrailerXX
+XXTrailer2XX
+XXCloseHtmlXX
+
+XXEOFXX
+
+$RecordCodesPage = <<'XXEOFXX';
+<html>
+<head><title>Record Type Codes</title>
+<base href="XXRecordCodesPageUrlXX">XXHeadXX
+</head><body>
+XXSiteHeadXX
+
+<h2>Record Type Codes</h2>
+
+<p>
+    The "record type" function in the <a href="XXComplexSearchUrlXX">Complex Search Form</a> (<a href="XXComplexHintsPageUrlXX">hints</a>) allows you to filter records based on what type of registration they contain.
+</p>
+
+<p>
+    Enter one or more record type codes from the below table, in any order, separated by the vertical-bar character, "|". 
+</p>
+
+<p>
+    For example, a search for <code>b|d|D</code> would match personal badges, devices, and combination name-and-device records.
+</p>
+
+<style>
+    table.lookup { border-collapse: collapse; }
+    table.lookup thead tr { background: #eee; border-bottom: 1px solid #999; }
+    table.lookup tr { vertical-align: top; }
+    table.lookup tbody tr { border-bottom: 1px solid #ddd; }
+    table.lookup tbody tr:nth-child(even) { background: #fcfcfc; }
+    table.lookup th { text-align: left; }
+    table.lookup th,
+    table.lookup td { padding: 2px 5px; }
+    table.lookup tr:hover td { background: #ffc;}
+</style>
+
+<table class="lookup">
+    <thead>
+        <tr>
+            <th>
+                Code
+            </th>
+            <th>
+                Record Type
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td> a </td>
+            <td> Augmentation of arms </td>
+        </tr>
+        <tr>
+            <td> AN </td>
+            <td> Alternate Name </td>
+        </tr>
+        <tr>
+            <td> ANC </td>
+            <td> Alternate Name Change </td>
+        </tr>
+        <tr>
+            <td> b </td>
+            <td> Badge (also used for misc. armory -- see "notes" field) </td>
+        </tr>
+        <tr>
+            <td> B </td>
+            <td> personal name and Badge (combined record) </td>
+        </tr>
+        <tr>
+            <td> BN </td>
+            <td> Branch Name </td>
+        </tr>
+        <tr>
+            <td> BD </td>
+            <td> Branch name and Device (combined record) </td>
+        </tr>
+        <tr>
+            <td> BNC </td>
+            <td> Branch Name Change </td>
+        </tr>
+        <tr>
+            <td> BNc </td>
+            <td> Branch Name Correction </td>
+        </tr>
+        <tr>
+            <td> Bv </td>
+            <td> Branch name Variant without correction (probable error) </td>
+        </tr>
+        <tr>
+            <td> Bvc </td>
+            <td> Branch name Variant with Correction </td>
+        </tr>
+        <tr>
+            <td> C </td>
+            <td> Comment (database identification and version control data) </td>
+        </tr>
+        <tr>
+            <td> d </td>
+            <td> Device </td>
+        </tr>
+        <tr>
+            <td> D </td>
+            <td> personal name and Device (combined record) </td>
+        </tr>
+        <tr>
+            <td> D?</td>
+            <td> uncertain type of armory (could be a, b, d, or s) </td>
+        </tr>
+        <tr>
+            <td> g </td>
+            <td> reGalia </td>
+        </tr>
+        <tr>
+            <td> HN </td>
+            <td> Household Name </td>
+        </tr>
+        <tr>
+            <td> HNC </td>
+            <td> Household Name Change </td>
+        </tr>
+        <tr>
+            <td> j </td>
+            <td> Joint badge cross-reference </td>
+        </tr>
+        <tr>
+            <td> N </td>
+            <td> primary personal Name </td>
+        </tr>
+        <tr>
+            <td> NC </td>
+            <td> personal Name Change </td>
+        </tr>
+        <tr>
+            <td> Nc </td>
+            <td> personal Name Correction </td>
+        </tr>
+        <tr>
+            <td> O </td>
+            <td> award name or Order name </td>
+        </tr>
+        <tr>
+            <td> OC </td>
+            <td> award name change or Order name Change </td>
+        </tr>
+        <tr>
+            <td> r </td>
+            <td> reserved/generic word/phrase </td>
+        </tr>
+        <tr>
+            <td> R </td>
+            <td> cross-Reference </td>
+        </tr>
+        <tr>
+            <td> s </td>
+            <td> Seal </td>
+        </tr>
+        <tr>
+            <td> t </td>
+            <td> heraldic Title </td>
+        </tr>
+        <tr>
+            <td> u </td>
+            <td> branch designator update </td>
+        </tr>
+        <tr>
+            <td> v </td>
+            <td> personal name Variant without correction (probable error) </td>
+        </tr>
+        <tr>
+            <td> vc </td>
+            <td> personal name Variant with Correction </td>
+        </tr>
+        <tr>
+            <td> W </td>
+            <td> heraldic will </td>
+        </tr>
+    </tbody>
+</table>
 
 XXTrailerXX
 XXTrailer2XX
@@ -15911,6 +16233,8 @@ $ConfigDbPath = &get_filepath ('XXConfigDbPathXX',
 &page_install ($BpHintsPage, 'BpHintsPage');
 &page_install ($ComplexHintsPage, 'ComplexHintsPage');
 &page_install ($OverviewPage, 'OverviewPage');
+&page_install ($RecordCodesPage, 'RecordCodesPage');
+&page_install ($KingdomCodesPage, 'KingdomCodesPage');
 &page_install ($LimitPage, 'LimitPage');
 &page_install ($DownloadPage, 'DownloadPage');
 &page_install ($DbFormatPage, 'DbFormatPage');
