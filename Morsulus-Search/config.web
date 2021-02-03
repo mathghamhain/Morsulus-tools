@@ -39,6 +39,8 @@ if ($opt eq '-r') {
   'BpHintsPage', 'blazon pattern search hints:hints_bp',
   'ComplexHintsPage', 'complex search hints:hints_complex',
   'OverviewPage', 'about SCA heraldry:heraldry_overview',
+  'RecordCodesPage', 'record type codes:codes_records',
+  'KingdomCodesPage', 'kingdom codes:codes_kingdoms',
   'LimitPage', 'about search limits:search_limits',
   'DownloadPage', 'about obtaining the database:data_obtain',
   'DbFormatPage', 'about the database format:data_format',
@@ -1104,7 +1106,7 @@ There are currently four methods available for specifying criteria:
 <li>record type:  a list of database item-types,
   separated by stiles (|), such as "AN" or "B|b".
   A complete list of record-types appears in the
-  <a href="XXDbFormatPageUrlXX#recordtype">file format document</a>.
+  <a href="XXRecordCodesPageUrlXX#recordtype">Record Type Codes</a> page.
 </ul>
 
 <h3>Scoring</h3>
@@ -1288,6 +1290,326 @@ heraldry</em>.
 <ul>
 <li><a href="http://heraldry.sca.org/">SCA Heraldry Links</a>
 </ul>
+
+XXTrailerXX
+XXTrailer2XX
+XXCloseHtmlXX
+
+XXEOFXX
+
+$KingdomCodesPage = <<'XXEOFXX';
+<html>
+<head><title>Kingdom Codes</title>
+<base href="XXKingdomCodesPageUrlXX">XXHeadXX
+</head><body>
+XXSiteHeadXX
+
+<h2>Kingdom Codes</h2>
+
+<p>
+    The "date and kingdom" function in the <a href="XXComplexSearchUrlXX">Complex Search Form</a> allows you to filter records based on the kingdom from which they were submitted.
+</p>
+
+<p>
+    Enter one or more kingdom codes from the below table, in any order, with no punctuation between them. 
+</p>
+
+<p>
+    For example, a search for <code>EHQ</code> would match records from the East, &AElig;thelmearc, and Atlantia.
+</p>
+
+<style>
+    table.lookup { border-collapse: collapse; }
+    table.lookup thead tr { background: #eee; border-bottom: 1px solid #999; }
+    table.lookup tr { vertical-align: top; }
+    table.lookup tbody tr { border-bottom: 1px solid #ddd; }
+    table.lookup tbody tr:nth-child(even) { background: #fcfcfc; }
+    table.lookup th { text-align: left; }
+    table.lookup th,
+    table.lookup td { padding: 2px 5px; }
+    table.lookup tr:hover td { background: #ffc;}
+</style>
+
+<table class="lookup">
+    <thead>
+        <tr>
+            <th>
+                Code
+            </th>
+            <th>
+                Kingdom
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td> H </td>
+            <td> &AElig;thelmearc </td>
+        </tr>
+        <tr>
+            <td> N </td>
+            <td> An Tir </td>
+        </tr>
+        <tr>
+            <td> X </td>
+            <td> Ansteorra </td>
+        </tr>
+        <tr>
+            <td> R </td>
+            <td> Artemisia </td>
+        </tr>
+        <tr>
+            <td> A </td>
+            <td> Atenveldt </td>
+        </tr>
+        <tr>
+            <td> Q </td>
+            <td> Atlantia </td>
+        </tr>
+        <tr>
+            <td> V </td>
+            <td> Avacal </td>
+        </tr>
+        <tr>
+            <td> C </td>
+            <td> Caid </td>
+        </tr>
+        <tr>
+            <td> K </td>
+            <td> Calontir </td>
+        </tr>
+        <tr>
+            <td> D </td>
+            <td> Drachenwald </td>
+        </tr>
+        <tr>
+            <td> m </td>
+            <td> Ealdormere </td>
+        </tr>
+        <tr>
+            <td> E </td>
+            <td> East </td>
+        </tr>
+        <tr>
+            <td> G </td>
+            <td> Gleann Abhann </td>
+        </tr>
+        <tr>
+            <td> L </td>
+            <td> Laurel or SCA (not submitted through a specific kingdom) </td>
+        </tr>
+        <tr>
+            <td> w </td>
+            <td> Lochac </td>
+        </tr>
+        <tr>
+            <td> S </td>
+            <td> Meridies </td>
+        </tr>
+        <tr>
+            <td> M </td>
+            <td> Middle </td>
+        </tr>
+        <tr>
+            <td> n </td>
+            <td> Northshield </td>
+        </tr>
+        <tr>
+            <td> O </td>
+            <td> Outlands </td>
+        </tr>
+        <tr>
+            <td> T </td>
+            <td> Trimaris </td>
+        </tr>
+        <tr>
+            <td> W </td>
+            <td> West </td>
+        </tr>
+    </tbody>
+</table>
+
+XXTrailerXX
+XXTrailer2XX
+XXCloseHtmlXX
+
+XXEOFXX
+
+$RecordCodesPage = <<'XXEOFXX';
+<html>
+<head><title>Record Type Codes</title>
+<base href="XXRecordCodesPageUrlXX">XXHeadXX
+</head><body>
+XXSiteHeadXX
+
+<h2>Record Type Codes</h2>
+
+<p>
+    The "record type" function in the <a href="XXComplexSearchUrlXX">Complex Search Form</a> (<a href="XXComplexHintsPageUrlXX">hints</a>) allows you to filter records based on what type of registration they contain.
+</p>
+
+<p>
+    Enter one or more record type codes from the below table, in any order, separated by the vertical-bar character, "|". 
+</p>
+
+<p>
+    For example, a search for <code>b|d|D</code> would match personal badges, devices, and combination name-and-device records.
+</p>
+
+<style>
+    table.lookup { border-collapse: collapse; }
+    table.lookup thead tr { background: #eee; border-bottom: 1px solid #999; }
+    table.lookup tr { vertical-align: top; }
+    table.lookup tbody tr { border-bottom: 1px solid #ddd; }
+    table.lookup tbody tr:nth-child(even) { background: #fcfcfc; }
+    table.lookup th { text-align: left; }
+    table.lookup th,
+    table.lookup td { padding: 2px 5px; }
+    table.lookup tr:hover td { background: #ffc;}
+</style>
+
+<table class="lookup">
+    <thead>
+        <tr>
+            <th>
+                Code
+            </th>
+            <th>
+                Record Type
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td> a </td>
+            <td> Augmentation of arms </td>
+        </tr>
+        <tr>
+            <td> AN </td>
+            <td> Alternate Name </td>
+        </tr>
+        <tr>
+            <td> ANC </td>
+            <td> Alternate Name Change </td>
+        </tr>
+        <tr>
+            <td> b </td>
+            <td> Badge (also used for misc. armory -- see "notes" field) </td>
+        </tr>
+        <tr>
+            <td> B </td>
+            <td> personal name and Badge (combined record) </td>
+        </tr>
+        <tr>
+            <td> BN </td>
+            <td> Branch Name </td>
+        </tr>
+        <tr>
+            <td> BD </td>
+            <td> Branch name and Device (combined record) </td>
+        </tr>
+        <tr>
+            <td> BNC </td>
+            <td> Branch Name Change </td>
+        </tr>
+        <tr>
+            <td> BNc </td>
+            <td> Branch Name Correction </td>
+        </tr>
+        <tr>
+            <td> Bv </td>
+            <td> Branch name Variant without correction (probable error) </td>
+        </tr>
+        <tr>
+            <td> Bvc </td>
+            <td> Branch name Variant with Correction </td>
+        </tr>
+        <tr>
+            <td> C </td>
+            <td> Comment (database identification and version control data) </td>
+        </tr>
+        <tr>
+            <td> d </td>
+            <td> Device </td>
+        </tr>
+        <tr>
+            <td> D </td>
+            <td> personal name and Device (combined record) </td>
+        </tr>
+        <tr>
+            <td> D?</td>
+            <td> uncertain type of armory (could be a, b, d, or s) </td>
+        </tr>
+        <tr>
+            <td> g </td>
+            <td> reGalia </td>
+        </tr>
+        <tr>
+            <td> HN </td>
+            <td> Household Name </td>
+        </tr>
+        <tr>
+            <td> HNC </td>
+            <td> Household Name Change </td>
+        </tr>
+        <tr>
+            <td> j </td>
+            <td> Joint badge cross-reference </td>
+        </tr>
+        <tr>
+            <td> N </td>
+            <td> primary personal Name </td>
+        </tr>
+        <tr>
+            <td> NC </td>
+            <td> personal Name Change </td>
+        </tr>
+        <tr>
+            <td> Nc </td>
+            <td> personal Name Correction </td>
+        </tr>
+        <tr>
+            <td> O </td>
+            <td> award name or Order name </td>
+        </tr>
+        <tr>
+            <td> OC </td>
+            <td> award name change or Order name Change </td>
+        </tr>
+        <tr>
+            <td> r </td>
+            <td> reserved/generic word/phrase </td>
+        </tr>
+        <tr>
+            <td> R </td>
+            <td> cross-Reference </td>
+        </tr>
+        <tr>
+            <td> s </td>
+            <td> Seal </td>
+        </tr>
+        <tr>
+            <td> t </td>
+            <td> heraldic Title </td>
+        </tr>
+        <tr>
+            <td> u </td>
+            <td> branch designator update </td>
+        </tr>
+        <tr>
+            <td> v </td>
+            <td> personal name Variant without correction (probable error) </td>
+        </tr>
+        <tr>
+            <td> vc </td>
+            <td> personal name Variant with Correction </td>
+        </tr>
+        <tr>
+            <td> W </td>
+            <td> heraldic will </td>
+        </tr>
+    </tbody>
+</table>
 
 XXTrailerXX
 XXTrailer2XX
@@ -2604,6 +2926,14 @@ how to proceed. Don't simply Make Something Up. Please.
 </tr>
 <tr align="left" valign="top"><td>ae'</td><td>ae</td><td>01FD</td><td>ǽ</td><td>&amp;#x01FD;</td><td>LATIN SMALL LETTER AE WITH ACUTE</td>
 </tr>
+<tr align="left" valign="top"><td>Dj_</td><td>Dj</td><td>01E6</td><td>Ǧ</td><td>&amp;#x01E6;</td><td>UNDERLINED CAPITAL LETTER DJ</td>
+</tr>
+<tr align="left" valign="top"><td>dj_</td><td>dj</td><td>01E7</td><td>ǧ</td><td>&amp;#x01E7;</td><td>UNDERLINED SMALL LETTER DJ</td>
+</tr>
+<tr align="left" valign="top"><td>Sh_</td><td>Sh</td><td>0160</td><td>Š</td><td>&amp;#x0160;</td><td>UNDERLINED CAPITAL LETTER SH</td>
+</tr>
+<tr align="left" valign="top"><td>sh_</td><td>sh</td><td>0161</td><td>š</td><td>&amp;#x0161;</td><td>UNDERLINED SMALL LETTER SH</td>
+</tr>
 </table>
 
 <h3>Related web pages:</h3>
@@ -2840,6 +3170,8 @@ XXSiteHeadXX
 <a name="armor">
 <li><a href="XXDescSearchUrlXX?p=ARMOR">Armor</a>
  - see also <a href="H.html#helmet">Helmet</a> and <a href="H.html#hand">Hand</a> and <a href="C.html#clothing">Clothing</a>
+<li>Arnica
+ - see <a href="F.html#flowermultipetaled">Flower - Multipetaled</a>
 <li>Arrangement - Beast
  - see <a href="A.html#arrangementcreature">Arrangement - Creature</a>
 <a name="arrangementcreature">
@@ -4048,6 +4380,8 @@ XXSiteHeadXX
  - see <a href="F.html#flowercupshape">Flower - Cup shape</a>
 <li>Butterfly
  - see <a href="A.html#arthropodmoth">Arthropod - Moth</a>
+<li>Bycocket
+ - see <a href="C.html#clothingheadgear">Clothing - Headgear</a>
 </ul>
 
 XXTrailerXX
@@ -4331,6 +4665,8 @@ XXSiteHeadXX
  - see <a href="C.html#chevroninverted">Chevron inverted</a>
 <li>Chevronelly
  - see <a href="F.html#fielddivisionchevronelly">Field division - Chevronelly</a>
+<li>Cicada
+ - see <a href="I.html#insectmoth">Insect - Moth</a>
 <li>Chicken
  - see <a href="B.html#birdwhole">Bird - Whole</a>
 <li>Chicory flower
@@ -4808,6 +5144,8 @@ XXSiteHeadXX
  - see <a href="B.html#beastdog">Beast - Dog</a>
 <li>Cubit
  - see <a href="A.html#arm">Arm</a>
+<li>Cucumber
+ - see <a href="F.html#fruitother">Fruit - Other</a>
 <a name="cup">
 <li><a href="XXDescSearchUrlXX?p=CUP%3aargent%3a1">Cup - 1 - Argent</a>
 <li><a href="XXDescSearchUrlXX?p=CUP%3aazure%3a1">Cup - 1 - Azure</a>
@@ -6041,6 +6379,8 @@ XXSiteHeadXX
  - see <a href="H.html#hide">Hide</a> and <a href="B.html#beastgoat">Beast - Goat</a>
 <li>Flesh hook
  - see <a href="T.html#tooleating">Tool - Eating</a>
+<li>Flesh-hook
+ - see <a href="T.html#tooleating">Tool - Eating</a>
 <li>Fleshpot
  - see <a href="C.html#cauldron">Cauldron</a>
 <a name="fleurdelys">
@@ -6071,6 +6411,8 @@ XXSiteHeadXX
 <li>Flower - Almond
  - see <a href="F.html#flowerrose">Flower - Rose</a>
 <li>Flower - Amaranth
+ - see <a href="F.html#flowermultipetaled">Flower - Multipetaled</a>
+<li>Flower - Arnica
  - see <a href="F.html#flowermultipetaled">Flower - Multipetaled</a>
 <li>Flower - Aster
  - see <a href="F.html#flowermultipetaled">Flower - Multipetaled</a>
@@ -6300,6 +6642,8 @@ XXSiteHeadXX
  - see <a href="F.html#flowermultifloreted">Flower - Multifloreted</a>
 <li>Flute
  - see <a href="M.html#musicalinstrumentrecorder">Musical instrument - Recorder</a>
+<li>Fly
+ - see <a href="I.html#insectmoth">Insect - Moth</a>
 <li>Foal
  - see <a href="B.html#beasthorse">Beast - Horse</a>
 <li>Foi
@@ -6623,6 +6967,8 @@ XXSiteHeadXX
 <li>Grasshopper
  - see <a href="A.html#arthropodmantis">Arthropod - Mantis</a>
 <li>Grater
+ - see <a href="T.html#toolother">Tool - Other</a>
+<li>Graver
  - see <a href="T.html#toolother">Tool - Other</a>
 <li>Great dane
  - see <a href="B.html#beastdog">Beast - Dog</a>
@@ -6968,6 +7314,8 @@ XXSiteHeadXX
  - see <a href="F.html#fishother">Fish - Other</a>
 <li>Hexagon
  - see <a href="P.html#polygon">Polygon</a>
+<li>Hibiscus
+ - see <a href="F.html#flowerrose">Flower - Rose</a>
 <a name="hide">
 <li><a href="XXDescSearchUrlXX?p=FLEECE%20AND%20HIDE">Hide</a>
 <li>Hill
@@ -7432,6 +7780,8 @@ XXSiteHeadXX
  - see <a href="W.html#wreathnotlaurel">Wreath - Not laurel</a>
 <li>Lemming
  - see <a href="B.html#beastmouse">Beast - Mouse</a>
+<li>Lemon
+ - see <a href="F.html#fruitother">Fruit - Other</a>
 <li>Leopard
  - see <a href="B.html#beastcat">Beast - Cat</a>
 <li>Leopard's head
@@ -7594,7 +7944,7 @@ XXSiteHeadXX
 <li>Mandolin
  - see <a href="M.html#musicalinstrumentlute">Musical instrument - Lute</a>
 <li>Mandrake
- - see <a href="P.html#plantother">Plant - Other</a>
+ - see also <a href="M.html#monsterhumanoid">Monster - Humanoid</a>
 <li>Mandrake's head
  - see <a href="H.html#headhuman">Head - Human</a>
 <li>Manticore
@@ -8123,6 +8473,8 @@ XXSiteHeadXX
  - see <a href="B.html#beastgoat">Beast - Goat</a> and <a href="M.html#monsterother">Monster - Other</a>
 <li>Musimon's head
  - see <a href="H.html#headbeastgoat">Head - Beast - Goat</a>
+<li>Muskito
+ - see <a href="I.html#insectdragonfly">Insect - Dragonfly</a>
 <li>Mustard flower
  - see <a href="F.html#flowerfewpetals">Flower - Few petals</a> and <a href="F.html#foilquatrefoil">Foil - Quatrefoil</a>
 </ul>
@@ -8190,11 +8542,13 @@ XXSiteHeadXX
 <li>No primary
  - see <a href="F.html#fieldonly">Field only</a> and <a href="P.html#peripheralonly">Peripheral only</a>
 <li>Non cross
- - see <a href="K.html#knot">Knot</a> and <a href="C.html#cross">Cross</a>
+ - see <a href="K.html#knot">Knot</a> and <a href="C.html#crossascharge">Cross - As charge</a>
 <li>Noose
  - see <a href="K.html#knot">Knot</a>
 <li>Norse serpent
  - see <a href="M.html#monsterknotted">Monster - Knotted</a>
+<li>Norse sun cross
+ - see <a href="S.html#symbol">Symbol</a>
 <li>Nosegay
  - see <a href="F.html#flowerbouquet">Flower - Bouquet</a>
 <li>Note - Musical
@@ -8299,6 +8653,8 @@ XXSiteHeadXX
  - see <a href="F.html#feather">Feather</a>
 <li>Otter
  - see <a href="B.html#beastweasel">Beast - Weasel</a>
+<li>Otter's head
+ - see <a href="H.html#headbeastmarten">Head - Beast - Marten</a>
 <li>Ounce
  - see <a href="B.html#beastcat">Beast - Cat</a>
 <li>Outrigger
@@ -8385,6 +8741,8 @@ XXSiteHeadXX
  - see <a href="F.html#fielddivisionpaly">Field division - Paly</a>
 <li>Pan pipe
  - see <a href="M.html#musicalinstrumentpanpipe">Musical instrument - Pan pipe</a>
+<li>Panache
+ - see <a href="F.html#feather">Feather</a>
 <li>Panda
  - see <a href="B.html#beastbear">Beast - Bear</a>
 <li>Pangolin
@@ -8937,6 +9295,8 @@ XXSiteHeadXX
  - see <a href="F.html#fruitberry">Fruit - Berry</a>
 <li>Rat
  - see <a href="B.html#beastmouse">Beast - Mouse</a>
+<li>Rat's head
+ - see <a href="H.html#headbeastother">Head - Beast - Other</a>
 <li>Raven
  - see <a href="B.html#birdwhole">Bird - Whole</a>
 <li>Raven's head
@@ -9069,7 +9429,9 @@ XXSiteHeadXX
 <li>Rod
  - see <a href="S.html#staff">Staff</a>
 <li>Rod of Aesculapius
- - see <a href="S.html#staff">Staff</a>
+ - see <a href="S.html#staff">Staff</a> and <a href="R.html#reptilesnake">Reptile - Snake</a>
+<li>Rod of asclepius
+ - see <a href="S.html#staff">Staff</a> and <a href="R.html#reptilesnake">Reptile - Snake</a>
 <li>Roebuck
  - see <a href="B.html#beastdeer">Beast - Deer</a>
 <li>Rogacina
@@ -9202,6 +9564,9 @@ XXSiteHeadXX
  - see <a href="R.html#reptilelizard">Reptile - Lizard</a>
 <li>Salmon
  - see <a href="F.html#fishother">Fish - Other</a>
+<li>Salt cellar
+ - see <a href="S.html#saltcellar">Saltcellar</a>
+<a name="saltcellar">
 <li><a href="XXDescSearchUrlXX?p=SALTCELLAR">Saltcellar</a>
 <a name="saltire">
 <li><a href="XXDescSearchUrlXX?p=SALTIRE%2a9">Saltire - As charge</a>
@@ -9344,6 +9709,8 @@ XXSiteHeadXX
  - see <a href="M.html#monsterseawolf">Monster - Sea - Wolf</a>
 <li>Sea-nettle
  - see <a href="M.html#monsterseaother">Monster - Sea - Other</a>
+<li>Sea-raccoon
+ - see <a href="M.html#monsterseaother">Monster - Sea - Other</a> and <a href="B.html#beastbadger">Beast - Badger</a>
 <li>Seagull
  - see <a href="B.html#birdwhole">Bird - Whole</a> and <a href="B.html#birddemi">Bird - Demi</a>
 <li>Seal
@@ -9499,6 +9866,8 @@ XXSiteHeadXX
  - see <a href="S.html#sword">Sword</a>
 <li>Skillet
  - see <a href="T.html#toolother">Tool - Other</a>
+<li>Skimmer
+ - see <a href="T.html#tooleating">Tool - Eating</a>
 <li>Skin - Beast
  - see <a href="H.html#hide">Hide</a>
 <li>Skin - Snake
@@ -9957,6 +10326,8 @@ XXSiteHeadXX
  - see <a href="R.html#roundelwhole">Roundel - Whole</a>
 <li>Tortoise
  - see <a href="R.html#reptileturtle">Reptile - Turtle</a>
+<li>Tortoise-shell plate
+ - see <a href="P.html#polygon">Polygon</a>
 <li>Totem pole
  - see <a href="H.html#headbeastother">Head - Beast - Other</a>
 <li>Touch me not
@@ -10264,6 +10635,8 @@ XXSiteHeadXX
  - see <a href="F.html#flowerrose">Flower - Rose</a>
 <li>Violin
  - see <a href="M.html#musicalinstrumentlute">Musical instrument - Lute</a>
+<li>Vireo
+ - see <a href="B.html#birdwhole">Bird - Whole</a>
 <li>Vires
  - see <a href="A.html#annulet">Annulet</a>
 <li>Vixen
@@ -10442,6 +10815,8 @@ XXSiteHeadXX
  - see <a href="B.html#birdwhole">Bird - Whole</a>
 <li>Woodruff
  - see <a href="P.html#plantherb">Plant - Herb</a>
+<li>Wool comb
+ - see <a href="T.html#tooltextile">Tool - Textile</a>
 <li>Wool fleece
  - see <a href="H.html#hide">Hide</a>
 <li>Wool pack
@@ -14706,7 +15081,7 @@ $conf_file = '.configweb';
 
 $config{'XXPrimerUrlXX'} = 'http://heraldry.sca.org/armory/newprimer/';
 $config{'XXLoARUrlXX'} = 'http://heraldry.sca.org/loar';
-$config_version = '2020-09-09 (mathghamhain:HEAD:167+)';
+$config_version = '2021-02-03 (mathghamhain:development:171+)';
 $config{'XXVersionXX'} = $config_version;
 $config{'XXHeadXX'} ||= '';
 $config{'XXSiteHeadXX'} ||= '';
@@ -14965,6 +15340,8 @@ $ConfigDbPath = &get_filepath ('XXConfigDbPathXX',
 &page_install ($BpHintsPage, 'BpHintsPage');
 &page_install ($ComplexHintsPage, 'ComplexHintsPage');
 &page_install ($OverviewPage, 'OverviewPage');
+&page_install ($RecordCodesPage, 'RecordCodesPage');
+&page_install ($KingdomCodesPage, 'KingdomCodesPage');
 &page_install ($LimitPage, 'LimitPage');
 &page_install ($DownloadPage, 'DownloadPage');
 &page_install ($DbFormatPage, 'DbFormatPage');
