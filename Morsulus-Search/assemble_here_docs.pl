@@ -15,6 +15,7 @@ my %textblobs = (
     OverviewPage => 'heraldry_overview.html',
     RecordCodesPage => 'codes_records.html',
     KingdomCodesPage => 'codes_kingdoms.html',
+    CategoryCodesPage => 'codes_categories.html',
     LimitPage => 'search_limits.html',
     DownloadPage => 'data_obtain.html',
     DbFormatPage => 'data_format.html',
@@ -78,6 +79,7 @@ my @textnames = qw/
     OverviewPage
     KingdomCodesPage
     RecordCodesPage
+    CategoryCodesPage
     LimitPage
     DownloadPage
     DbFormatPage
