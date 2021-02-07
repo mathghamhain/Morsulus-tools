@@ -906,6 +906,7 @@ sub byscoreblazon {
   local($sa, $na, $da, $ya, $ba) = split (/\|/, $a);
   local($sb, $nb, $db, $yb, $bb) = split (/\|/, $b);
   local($c) = ($sb <=> $sa);
+  return $c if ($c);
   return (($sb <=> $sa) || ($ba cmp $bb));
   return $na cmp $nb;
 }
@@ -913,6 +914,7 @@ sub byscoredate {
   local($sa, $na, $da) = split (/\|/, $a);
   local($sb, $nb, $db) = split (/\|/, $b);
   local($c) = ($sb <=> $sa);
+  return $c if ($c);
   $da =~ s/^.*[-]//;
   $db =~ s/^.*[-]//;
   return &idate ($da) <=> &idate ($db);
