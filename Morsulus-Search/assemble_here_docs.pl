@@ -16,6 +16,7 @@ my %textblobs = (
     RecordCodesPage => 'codes_records.html',
     KingdomCodesPage => 'codes_kingdoms.html',
     CategoryCodesPage => 'codes_categories.html',
+    FeatureCodesPage => 'codes_features.html',
     LimitPage => 'search_limits.html',
     DownloadPage => 'data_obtain.html',
     DbFormatPage => 'data_format.html',
@@ -80,6 +81,7 @@ my @textnames = qw/
     KingdomCodesPage
     RecordCodesPage
     CategoryCodesPage
+    FeatureCodesPage
     LimitPage
     DownloadPage
     DbFormatPage
