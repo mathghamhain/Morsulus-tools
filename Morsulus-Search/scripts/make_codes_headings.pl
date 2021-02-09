@@ -164,3 +164,40 @@ $html =~ s{<tbody>.*</tbody>}{$table_body}s;
 open (HTML, ">feature_codes.html") || die "cannot write to feature_codes.html";
 print HTML $html;
 close HTML;
+
+
+### FEATURES
+
+$table_body = join("\n", 
+    "<tbody>",
+    ( map { 
+        my $feature_set = $_;
+        my @features = @{ $feature_sets{ $feature_set } };
+        ( 
+        "<tr class='feature-set'>",
+            qq{<td> $feature_set </td>},
+            qq{<td></td>},
+        "</tr>",            
+        ),
+        map {
+            my $feature = $_;
+            my $feature_label = html_escape( $feature->{'feature'} );
+            my $relationship_html = ( $feature->{'relationships'} and @{ $feature->{'relationships'} } ) ? qq{ <span class="feature-relationships">(} . join('; ', map { html_escape($_) } @{ $feature->{'relationships'} } ) . qq{)</span>} : '';
+            "<tr>",
+                qq{<td>  </td>},
+                qq{<td> $feature_label $relationship_html </td>},
+            "</tr>",            
+        } @features;
+    } sort keys %feature_sets ),
+    "</tbody>",
+);
+
+open (HTML, "codes_features.html") || die "cannot read codes_features.html";
+$html = join "", <HTML>;
+close HTML;
+
+$html =~ s{<tbody>.*</tbody>}{$table_body}s;
+
+open (HTML, ">codes_features.html") || die "cannot write to codes_features.html";
+print HTML $html;
+close HTML;
