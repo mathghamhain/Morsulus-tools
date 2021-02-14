@@ -543,7 +543,7 @@ sub print_match {
       $source = $source[1];
     }
     print ' was corrected to ', &name ($text);
-    print ' in ', &source ($source), '.';
+    print &source ($source), '.';
     print '</span>';
 
   } elsif ($type eq 'BNc') {
@@ -554,7 +554,7 @@ sub print_match {
       $source = $source[1];
     }
     print ' was corrected to ', &name ($text);
-    print ' in ', &source ($source), '.';
+    print &source ($source), '.';
     print '</span>';
 
   } elsif ($type eq 'u') {
@@ -565,7 +565,7 @@ sub print_match {
       $source = $source[1];
     }
     print ' updated to ', &name ($text);
-    print ' in ', &source ($source), '.';
+    print &source ($source), '.';
     print '</span>';
     $result_stats{'name-nonpersonal-change'} ++;
 
@@ -577,7 +577,7 @@ sub print_match {
       $source = $source[1];
     }
     print ' changed to ', &name ($text);
-    print ' in ', &source ($source), '.';
+    print &source ($source), '.';
     print '</span>';
     $result_stats{'name-personal-change'} ++;
 
@@ -636,7 +636,7 @@ sub print_match {
       print 'Name referenced';
     print ' as joint registrant of a badge';
     print ' with ', &name ($text);
-    print ' in ', &source ($source[0]), '.';
+    print &source ($source[0]), '.';
     print '</span>';
     $result_stats{'armory-badge-joint'} ++;
 
@@ -654,7 +654,7 @@ sub print_match {
     } else {
       print ' in a registration by ', &name ($text);
     }
-    print ' in ', &source ($source[0]), '.';
+    print &source ($source[0]), '.';
     print '</span>';
 
   } elsif ($type eq 'vc' || $type eq 'Bvc') {
@@ -728,8 +728,8 @@ sub print_match {
     print ' registered ';
     print_and_clear( $for );
     print_and_clear( $jointly );
-    print "in " . &source ($source[0]);
-    print ', then ', $disp, ' in ', &source ($source[1]) if ($source =~ /-/);
+    print &source ($source[0]);
+    print ', then ', $disp, &source ($source[1]) if ($source =~ /-/);
     print '.';
     print '</span>';
     $result_stats{'armory-' . $type_name{$type} . '-' . ($source =~ /-/ ? 'obsolete' : 'current') } ++;
@@ -1020,7 +1020,7 @@ sub source {
       $year = $ce;
     }
     local ($mn) = $month_name[$month];
-    $out = "in $mn of $year";
+    $out = "$mn of $year";
     $out .= " via $kingdom_name{$kingdom}" if ($kingdom ne '');
     return $out if ($date_links eq 'disabled');
 
@@ -1033,7 +1033,7 @@ sub source {
         $sopt .= "&k$kn=checked";
       }
     }
-    return qq'<a class="search-date" href="XXDateSearchUrlXX?$sopt">$out</a>';
+    return qq'in <a class="search-date" href="XXDateSearchUrlXX?$sopt">$out</a>';
   }
 } # sub source
 
