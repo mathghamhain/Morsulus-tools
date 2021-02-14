@@ -681,7 +681,7 @@ It is usually easiest to find items when they are sorted by name.
 The "Result Limit" option controls the size of your search result. 
 It defaults to 200, but you can change this to another number to see more or fewer results. If more than this number of items match your criteria, you will see a notice linking to <a href="XXLimitPageUrlXX">an explanation of the limit feature</a>.
 <p>
-The "Anno Societatis Dates" option controls whether dates are shown in modern style (Common Era year/A.D.) or SCA style (Anno Societatis).
+The "A.S. Dates" option controls whether dates are shown in modern style (Common Era year/A.D.) or SCA style (Anno Societatis).
 The SCA calendar counts years from the SCA's "First Tournament"
 (1 May 1966) and traditionally uses Roman numerals for years.
 <p>
@@ -911,7 +911,7 @@ you are looking for is particularly old or particularly recent.
 The "Result Limit" option controls the size of your search result. 
 It defaults to 500, but you can change this to another number to see more or fewer results. If more than this number of items match your criteria, you will see a notice linking to <a href="XXLimitPageUrlXX">an explanation of the limit feature</a>.
 <p>
-The "Anno Societatis Dates" option controls whether dates are shown in modern style (Common Era year/A.D.) or SCA style (Anno Societatis).
+The "A.S. Dates" option controls whether dates are shown in modern style (Common Era year/A.D.) or SCA style (Anno Societatis).
 The SCA calendar counts years from the SCA's "First Tournament"
 (1 May 1966) and traditionally uses Roman numerals for years.
 <p>
@@ -1032,7 +1032,7 @@ you are looking for is particularly old or recent.
 The "Result Limit" option controls the size of your search result. 
 It defaults to 500, but you can change this to another number to see more or fewer results. If more than this number of items match your criteria, you will see a notice linking to <a href="XXLimitPageUrlXX">an explanation of the limit feature</a>.
 <p>
-The "Anno Societatis Dates" option controls whether dates are shown in modern style (Common Era year/A.D.) or SCA style (Anno Societatis).
+The "A.S. Dates" option controls whether dates are shown in modern style (Common Era year/A.D.) or SCA style (Anno Societatis).
 The SCA calendar counts years from the SCA's "First Tournament"
 (1 May 1966) and traditionally uses Roman numerals for years.
 <p>
@@ -1166,7 +1166,7 @@ you are looking for is particularly old or recent.
 The "Result Limit" option controls the size of your search result. 
 It defaults to 500, but you can change this to another number to see more or fewer results. If more than this number of items match your criteria, you will see a notice linking to <a href="XXLimitPageUrlXX">an explanation of the limit feature</a>.
 <p>
-The "Anno Societatis Dates" option controls whether dates are shown in modern style (Common Era year/A.D.) or SCA style (Anno Societatis).
+The "A.S. Dates" option controls whether dates are shown in modern style (Common Era year/A.D.) or SCA style (Anno Societatis).
 The SCA calendar counts years from the SCA's "First Tournament"
 (1 May 1966) and traditionally uses Roman numerals for years.
 <p>
@@ -17383,21 +17383,22 @@ sub display_options {
   print '</label>';
 
   print '<li><label>';
-  print '<input type="checkbox" name="d" value="SCA" ' . ( $era eq 'SCA' ? 'checked' : '' ) . '> ';
-  print 'Anno Societatis Dates</label>';
+  print '<input type="checkbox" name="a" value="enabled" ' . ( $arm_descs eq 'enabled' ? 'checked' : '' ) . '> ';
+  print 'Armory Descriptions</label>';
 
   print '<li><label>';
   print '<input type="checkbox" name="g" value="enabled" ' . ( $gloss_links eq 'enabled' ? 'checked' : '' ) . '> ';
   print 'Glossary Links</label>';
-
-  print '<li><label>';
-  print '<input type="checkbox" name="a" value="enabled" ' . ( $arm_descs eq 'enabled' ? 'checked' : '' ) . '> ';
-  print 'Armory Descriptions</label>';
   
   print '<li>Raw display mode ';
   &select ('raw', $raw_display_mode, @onoff);
   
   print '<li>Registration status ';
+  &select ('rs', $registered_status, @registered_status);
+  
+  print '<li><label>';
+  print '<input type="checkbox" name="d" value="SCA" ' . ( $era eq 'SCA' ? 'checked' : '' ) . '> ';
+  print 'A.S. Dates</label>';
 
   print '</ul>';
   print '</div>';
@@ -19405,7 +19406,7 @@ $conf_file = '.configweb';
 
 $config{'XXPrimerUrlXX'} = 'http://heraldry.sca.org/armory/newprimer/';
 $config{'XXLoARUrlXX'} = 'http://heraldry.sca.org/loar';
-$config_version = '2024-09-26 (1:HEAD:202+)';
+$config_version = '2024-09-26 (1:HEAD:203+)';
 $config{'XXVersionXX'} = $config_version;
 $config{'XXHeadXX'} ||= '';
 $config{'XXSiteHeadXX'} ||= '';
