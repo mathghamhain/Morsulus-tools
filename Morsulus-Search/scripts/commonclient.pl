@@ -411,16 +411,16 @@ sub display_options {
   print '</label>';
 
   print '<li><label>';
-  print '<input type="checkbox" name="d" value="SCA" ' . ( $era eq 'SCA' ? 'checked' : '' ) . '> ';
-  print 'Anno Societatis Dates</label>';
+  print '<input type="checkbox" name="a" value="enabled" ' . ( $arm_descs eq 'enabled' ? 'checked' : '' ) . '> ';
+  print 'Armory Descriptions</label>';
 
   print '<li><label>';
   print '<input type="checkbox" name="g" value="enabled" ' . ( $gloss_links eq 'enabled' ? 'checked' : '' ) . '> ';
   print 'Glossary Links</label>';
 
   print '<li><label>';
-  print '<input type="checkbox" name="a" value="enabled" ' . ( $arm_descs eq 'enabled' ? 'checked' : '' ) . '> ';
-  print 'Armory Descriptions</label>';
+  print '<input type="checkbox" name="d" value="SCA" ' . ( $era eq 'SCA' ? 'checked' : '' ) . '> ';
+  print 'A.S. Dates</label>';
 
   print '</ul>';
   print '</div>';
