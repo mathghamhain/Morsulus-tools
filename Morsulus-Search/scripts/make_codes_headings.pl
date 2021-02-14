@@ -192,12 +192,12 @@ $table_body = join("\n",
     "</tbody>",
 );
 
-open (HTML, "codes_features.html") || die "cannot read codes_features.html";
+open (HTML, "feature_codes.html") || die "cannot read feature_codes.html";
 $html = join "", <HTML>;
 close HTML;
 
 $html =~ s{<tbody>.*</tbody>}{$table_body}s;
 
-open (HTML, ">codes_features.html") || die "cannot write to codes_features.html";
+open (HTML, ">feature_codes.html") || die "cannot write to feature_codes.html";
 print HTML $html;
 close HTML;
