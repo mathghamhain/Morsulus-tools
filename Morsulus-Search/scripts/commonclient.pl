@@ -824,8 +824,6 @@ sub print_results {
   local ($criteria, $n, $scoresort, $accumulate_stats) = @_;
   local ($_, @item, $total_lost, $score);
 
-  print '<h3>Results:</h3>';
-
   &print_messages ();
 
   if (!$scoresort) {

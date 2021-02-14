@@ -17793,8 +17793,6 @@ sub print_results {
   local ($criteria, $n, $scoresort, $accumulate_stats) = @_;
   local ($_, @item, $total_lost, $score);
 
-  print '<h3>Results:</h3>';
-
   &print_messages ();
 
   if (!$scoresort) {
@@ -19406,7 +19404,7 @@ $conf_file = '.configweb';
 
 $config{'XXPrimerUrlXX'} = 'http://heraldry.sca.org/armory/newprimer/';
 $config{'XXLoARUrlXX'} = 'http://heraldry.sca.org/loar';
-$config_version = '2024-09-26 (1:HEAD:203+)';
+$config_version = '2024-09-26 (1:HEAD:204+)';
 $config{'XXVersionXX'} = $config_version;
 $config{'XXHeadXX'} ||= '';
 $config{'XXSiteHeadXX'} ||= '';
