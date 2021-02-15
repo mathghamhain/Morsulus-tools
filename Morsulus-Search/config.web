@@ -566,7 +566,16 @@ XXSiteHeadXX
     
     <ul>    
         <li><a href="XXLimitPageUrlXX">Search Limits</a>
-        <li><a href="XXVersionUrlXX">Glossary of Heraldic Terms</a>
+        <li><a href="XXGlossaryUrlXX">Glossary of Heraldic Terms</a>
+    </ul>
+    
+    <h3>Look Up Search Codes</h3>
+    
+    <ul>    
+        <li><a href="XXRecordCodesPageUrlXX">Record Type Codes</a>
+        <li><a href="XXKingdomCodesPageUrlXX">Kingdom Codes</a>
+        <li><a href="XXCategoryCodesPageUrlXX">Category Heading Codes</a>
+        <li><a href="XXFeatureCodesPageUrlXX">Feature Codes</a>
     </ul>
 
     <h3>Database Details and Download</h3>
@@ -19404,7 +19413,7 @@ $conf_file = '.configweb';
 
 $config{'XXPrimerUrlXX'} = 'http://heraldry.sca.org/armory/newprimer/';
 $config{'XXLoARUrlXX'} = 'http://heraldry.sca.org/loar';
-$config_version = '2024-09-26 (1:HEAD:204+)';
+$config_version = '2024-09-26 (1:HEAD:205+)';
 $config{'XXVersionXX'} = $config_version;
 $config{'XXHeadXX'} ||= '';
 $config{'XXSiteHeadXX'} ||= '';
