@@ -1669,10 +1669,6 @@ XXSiteHeadXX
     </thead>
     <tbody>
 <tr>
-<td> <a href="XXDescSearchUrlXX?p=tincture%3Avert%3Cdark">tincture:<wbr>vert<dark</a> </td>
-<td> <a name="tincture:vert<dark"></a>    </td>
-</tr>
-<tr>
 <td> <a href="XXDescSearchUrlXX?p=ABACUS">ABACUS</a> </td>
 <td> <a name="ABACUS"></a> Abacus   </td>
 </tr>
@@ -19414,7 +19410,7 @@ $conf_file = '.configweb';
 
 $config{'XXPrimerUrlXX'} = 'http://heraldry.sca.org/armory/newprimer/';
 $config{'XXLoARUrlXX'} = 'http://heraldry.sca.org/loar';
-$config_version = '2024-09-26 (1:HEAD:214+)';
+$config_version = '2024-09-26 (1:HEAD:215+)';
 $config{'XXVersionXX'} = $config_version;
 $config{'XXHeadXX'} ||= '';
 $config{'XXSiteHeadXX'} ||= '';

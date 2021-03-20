@@ -14,17 +14,20 @@ open (CATS, "my.cat") || die "cannot open my.cat";
 while (<CATS>) {	
 	chomp;
 	
-	/^[#]/ and next; # skip comments
-	
-	/^[|](\w+):(.*)/ and do 
-    {
+	if ( /^[#]/ ) {
+	    next; # skip comments
+	}
+
+    # Feature
+	if ( /^[|](\w+):(.*)/ ) {
         my ( $set, $feature ) = ( $1, $2 );
         ( $feature, my @relationships ) = split /(?=[=<])/, $feature;
         push @{ $feature_sets{ $set } }, { feature => $feature, relationships => \@relationships };
-    };
+		next;
+    }
 	
-	/^(.+) - see (also )?(.+)/ and do # cross-reference
-	{
+    # Cross-reference
+	if ( /^(.+) - see (also )?(.+)/ ) {
 		my ($from, $to) = ($1, $3);
         my @to = split(/ and /, $to);
         if ( $2 ) {
@@ -35,7 +38,7 @@ while (<CATS>) {
             }
         }
 		next;
-	};
+	}
 	
 	# otherwise a heading
 	my ($category, $heading) = split(/[|]/, $_);
@@ -88,8 +91,11 @@ sub find_category_heading {
     my $heading = $categories{$_};
     return $heading if $heading;
     my @matches = grep { /^\Q$category_or_prefix/ } @categories;
+    if ( ! @matches ) {
+        warn "Can't find heading for $category_or_prefix\n";
+        return;
+    }
     $categories{ $matches[0] } 
-        or die "Can't find heading for $category_or_prefix"
 }
 
 my $table_body = join("\n", 
