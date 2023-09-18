@@ -163,6 +163,7 @@ for $i (1 .. $criteria) {
   print '<input type="text" name="w', $i, '" value="', ( $weight[$i] == 1 ? '' : $weight[$i] ), '" size="6" placeholder="Weight">';
   print '</div>';
 }
+print '</div>';
 if ($valid && @validation_errors)
 {
     print '<p>Description validation errors:';
@@ -250,8 +251,13 @@ sub validate_desc
     $desc =~ s/\s+/ /g;
     $desc =~ s/ $//;
     $desc =~ s/ :/:/g;
+<<<<<<< HEAD
     $desc =~ s/: /:/g;
     $desc =~ s/^ //;
+=======
+    $desc ~= s/: /:/g;
+    $desc ~= s/^ //;
+>>>>>>> a8b0c5a (rolling complexb into production)
     
     if ($desc =~ /:/ or $desc !~ /[a-z,]/) # heading maybe with features
     {

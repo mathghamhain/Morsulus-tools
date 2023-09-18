@@ -544,12 +544,12 @@ XXEOFXX
 
 $AboutOandaPage = <<'XXEOFXX';
 <html>
-<head><title>Format of the SCA Armorial Database</title>
+<head><title>About the SCA Ordinary &amp; Armorial</title>
 <base href="XXAboutOandaPageUrlXX">XXHeadXX
 </head><body>
 XXSiteHeadXX
 
-    <h2>About the Ordinary &amp; Armorial</h2>
+    <h2>About the SCA Ordinary &amp; Armorial</h2>
     <p>
         This O&amp;A is a web-based searchable database of the names and armory registered by <a href="http://heraldry.sca.org">the College of Arms</a> of <a href="http://sca.org">the Society for Creative Anachronism</a>.
     </p>
@@ -16262,6 +16262,7 @@ for $i (1 .. $criteria) {
   print '<input type="text" name="w', $i, '" value="', ( $weight[$i] == 1 ? '' : $weight[$i] ), '" size="6" placeholder="Weight">';
   print '</div>';
 }
+print '</div>';
 if ($valid && @validation_errors)
 {
     print '<p>Description validation errors:';
@@ -16349,8 +16350,13 @@ sub validate_desc
     $desc =~ s/\s+/ /g;
     $desc =~ s/ $//;
     $desc =~ s/ :/:/g;
+<<<<<<< HEAD
     $desc =~ s/: /:/g;
     $desc =~ s/^ //;
+=======
+    $desc ~= s/: /:/g;
+    $desc ~= s/^ //;
+>>>>>>> a8b0c5a (rolling complexb into production)
     
     if ($desc =~ /:/ or $desc !~ /[a-z,]/) # heading maybe with features
     {
@@ -19410,7 +19416,7 @@ $conf_file = '.configweb';
 
 $config{'XXPrimerUrlXX'} = 'http://heraldry.sca.org/armory/newprimer/';
 $config{'XXLoARUrlXX'} = 'http://heraldry.sca.org/loar';
-$config_version = '2024-09-26 (1:HEAD:215+)';
+$config_version = '2024-09-26 (1:HEAD:217+)';
 $config{'XXVersionXX'} = $config_version;
 $config{'XXHeadXX'} ||= '';
 $config{'XXSiteHeadXX'} ||= '';
