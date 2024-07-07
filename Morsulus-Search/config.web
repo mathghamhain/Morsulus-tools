@@ -562,6 +562,15 @@ XXSiteHeadXX
         <li><a href="http://heraldry.sca.org/armory/newprimer/">Heraldic Primer</a> (Introduction to Armory)</li>
     </ul>
     
+    <h3>Search Form Hints</h3>
+    
+    <ul>    
+        <li><a href="XXNpHintsPageUrlXX">Name Pattern Hints</a>
+        <li><a href="XXBpHintsPageUrlXX">Blazon Pattern Hints</a>
+        <li><a href="XXDateHintsPageUrlXX">Date Pattern Hints</a>
+        <li><a href="XXComplexSearchUrlXX">Complex Search Form Hints</a>
+    </ul>
+    
     <h3>Site Usage Tips</h3>
     
     <ul>    
@@ -19540,7 +19549,7 @@ $conf_file = '.configweb';
 
 $config{'XXPrimerUrlXX'} = 'http://heraldry.sca.org/armory/newprimer/';
 $config{'XXLoARUrlXX'} = 'http://heraldry.sca.org/loar';
-$config_version = '2024-09-26 (1:HEAD:252+)';
+$config_version = '2024-09-26 (1:HEAD:253+)';
 $config{'XXVersionXX'} = $config_version;
 $config{'XXHeadXX'} ||= '';
 $config{'XXSiteHeadXX'} ||= '';
