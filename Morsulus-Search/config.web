@@ -5531,7 +5531,7 @@ and notes, in that order.
 <li>
 	  X = Ansteorra
 
-</ul><a name="recordtype"><p><li>
+</ul><p><li><a name="recordtype"></a>
   (3)  record type (required):
 <ul><li>
 	  a    = Augmentation of arms
@@ -19637,7 +19637,7 @@ $conf_file = '.configweb';
 
 $config{'XXPrimerUrlXX'} = 'http://heraldry.sca.org/armory/newprimer/';
 $config{'XXLoARUrlXX'} = 'http://heraldry.sca.org/loar';
-$config_version = '2024-09-26 (1:HEAD:255+)';
+$config_version = '2024-09-26 (1:HEAD:256+)';
 $config{'XXVersionXX'} = $config_version;
 $config{'XXHeadXX'} ||= '';
 $config{'XXSiteHeadXX'} ||= '';
