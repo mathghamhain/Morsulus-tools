@@ -7,8 +7,43 @@ XXSiteHeadXX
 <h2>Category Codes</h2>
 
 <p>
-    The <a href="XXDescSearchUrlXX">Armory Description Search Form</a> allows you to filter armory records based on the types of elements they contain.
+    The <a href="XXDescSearchUrlXX">Armory Description Search Form</a> allows you to filter armory records based on the types of elements they contain. Headings may optionally be paired with <a href="XXFeatureCodesPageUrlXX">features</a>.
 </p>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<form style="margin: 1em; border: 1px solid #ccc; background: #eee; padding: 0.5em;">
+	<input type="search" id="filter" placeholder="Type to search" style="width: 100%">
+</form>
+
+<script>
+	$('#filter').on('input', function () {
+		filter_rows();
+		setTimeout( filter_rows, 100 )
+	} );
+	$('#filter').on('change', filter_rows );
+	function filter_rows() {
+		const search = $('#filter').val();
+		const search_re = new RegExp(search, 'i'); 
+		// console.log( "Search:", search_re );
+		$('table.lookup tbody tr').each( function () {
+			var match;
+			if ( ! search ) {
+				match = 1
+			} else {				
+				match = ! ! $(this).text().match(search_re);
+			}
+			var visible = $(this).is(':visible');
+			// console.log( 'match?', match, visible, match != visible );
+			if ( match && ! visible ) {
+				$( this ).slideDown( 100 )
+			}
+			else if ( visible && ! match ) {
+				$( this ).slideUp( 100 )
+			}
+		} );
+	}
+</script>
 
 <style>
     table.lookup { border-collapse: collapse; }

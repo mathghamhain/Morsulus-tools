@@ -7,8 +7,57 @@ XXSiteHeadXX
 <h2>Feature Codes</h2>
 
 <p>
-    The <a href="XXDescSearchUrlXX">Armory Description Search Form</a> allows you to filter armory records based on features of the items they contain.
+    The <a href="XXDescSearchUrlXX">Armory Description Search Form</a> allows you to filter armory records based on features of the items they contain. Features are used in conjunction with <a href="XXCategoryCodesPageUrlXX">headings from the categories list</a>.
 </p>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<form style="margin: 1em; border: 1px solid #ccc; background: #eee; padding: 0.5em;">
+	<input type="search" id="filter" placeholder="Type to search" style="width: 100%">
+</form>
+
+<script>
+	$('#filter').on('input', function () {
+		filter_rows();
+		setTimeout( filter_rows, 100 )
+	} );
+	$('#filter').on('change', filter_rows );
+	function filter_rows() {
+		const search = $('#filter').val();
+		const search_re = new RegExp(search, 'i'); 
+		// console.log( "Search:", search_re );
+		$('table.lookup tbody tr:not(.feature-set)').each( function () {
+			var row = $(this);
+			var match;
+			if ( ! search ) {
+				match = 1
+			} else {				
+				match = ! ! row.text().match(search_re);
+			}
+			var visible = row.is(':visible');
+			// console.log( 'match?', match, visible, match != visible );
+			if ( match && ! visible ) {
+				row.slideDown( 100 );
+				row.removeClass('filtered');
+			}
+			else if ( visible && ! match ) {
+				row.slideUp( 100 );
+				row.addClass('filtered');
+			}
+		} );
+		$('table.lookup tbody tr.feature-set').each( function () {
+			var row = $(this);
+			var next_visible = row.nextAll(':not(.filtered )');
+			var empty = ( next_visible.length == 0 || next_visible.first().is('.feature-set') );
+			var visible = row.is(':visible');
+			if ( ! empty && ! visible ) {
+				row.slideDown( 100 )
+			}
+			else if ( visible && empty ) {
+				row.slideUp( 100 )
+			}
+		} );
+	}
+</script>
 
 <style>
     table.lookup { border-collapse: collapse; }
