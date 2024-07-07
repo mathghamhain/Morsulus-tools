@@ -420,13 +420,18 @@ sub display_options {
   print '<li><label>';
   print '<input type="checkbox" name="g" value="enabled" ' . ( $gloss_links eq 'enabled' ? 'checked' : '' ) . '> ';
   print 'Glossary Links</label>';
-  
-  print '<li>Raw display mode ';
-  &select ('raw', $raw_display_mode, @onoff);
-  
-  print '<li>Registration status ';
-  &select ('rs', $registered_status, @registered_status);
-  
+
+  if ( $in_complex_search ) {
+    print '<li><label>';
+    print '<input type="checkbox" name="raw" value="enabled" ' . ( $raw_display_mode eq 'enabled' ? 'checked' : '' ) . '> ';
+    print 'Raw display mode</label>';
+  }
+
+  if ( $in_complex_search ) {
+    print '<li>Registration status ';
+    &select ('rs', $registered_status, @registered_status);
+  }
+
   print '<li><label>';
   print '<input type="checkbox" name="d" value="SCA" ' . ( $era eq 'SCA' ? 'checked' : '' ) . '> ';
   print 'A.S. Dates</label>';
