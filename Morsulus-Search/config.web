@@ -17657,7 +17657,7 @@ sub print_match {
       print ' registered ', &source ($source[0]), ',';
       $source = $source[1];
     }
-    print ' was corrected to ', &name ($text);
+    print ' was corrected to ', &name ($text), ' ';
     print &source ($source), '.';
     print '</span>';
 
@@ -17668,7 +17668,7 @@ sub print_match {
       print ' registered ', &source ($source[0]), ',';
       $source = $source[1];
     }
-    print ' was corrected to ', &name ($text);
+    print ' was corrected to ', &name ($text), ' ';
     print &source ($source), '.';
     print '</span>';
 
@@ -19549,7 +19549,7 @@ $conf_file = '.configweb';
 
 $config{'XXPrimerUrlXX'} = 'http://heraldry.sca.org/armory/newprimer/';
 $config{'XXLoARUrlXX'} = 'http://heraldry.sca.org/loar';
-$config_version = '2024-09-26 (1:HEAD:253+)';
+$config_version = '2024-09-26 (1:HEAD:254+)';
 $config{'XXVersionXX'} = $config_version;
 $config{'XXHeadXX'} ||= '';
 $config{'XXSiteHeadXX'} ||= '';

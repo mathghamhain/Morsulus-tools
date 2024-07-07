@@ -543,7 +543,7 @@ sub print_match {
       print ' registered ', &source ($source[0]), ',';
       $source = $source[1];
     }
-    print ' was corrected to ', &name ($text);
+    print ' was corrected to ', &name ($text), ' ';
     print &source ($source), '.';
     print '</span>';
 
@@ -554,7 +554,7 @@ sub print_match {
       print ' registered ', &source ($source[0]), ',';
       $source = $source[1];
     }
-    print ' was corrected to ', &name ($text);
+    print ' was corrected to ', &name ($text), ' ';
     print &source ($source), '.';
     print '</span>';
 
