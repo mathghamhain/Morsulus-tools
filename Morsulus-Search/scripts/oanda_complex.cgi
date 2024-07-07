@@ -251,13 +251,8 @@ sub validate_desc
     $desc =~ s/\s+/ /g;
     $desc =~ s/ $//;
     $desc =~ s/ :/:/g;
-<<<<<<< HEAD
     $desc =~ s/: /:/g;
     $desc =~ s/^ //;
-=======
-    $desc ~= s/: /:/g;
-    $desc ~= s/^ //;
->>>>>>> a8b0c5a (rolling complexb into production)
     
     if ($desc =~ /:/ or $desc !~ /[a-z,]/) # heading maybe with features
     {
