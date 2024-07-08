@@ -169,8 +169,6 @@ if ($valid && @validation_errors)
     print '<p>Description validation errors:';
     print '<br/>', $_ for @validation_errors;
 }
-print '<p>Maximum number of items to display ->';
-print '<input type="text" name="l" value="', $limit, '" size=3>';
 
 &display_options (1);
 
