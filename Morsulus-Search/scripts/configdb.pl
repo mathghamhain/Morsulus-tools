@@ -344,7 +344,7 @@ while (1) {
       print NS q^'^;
       #&log ("> '");
     }
-    if (@tops > 50 || $show_copyright) {
+    if (@tops > 500 || $show_copyright) {
       foreach (@copyright) {
         print NS q^'^, $_;
         #&log ("> '$_");
