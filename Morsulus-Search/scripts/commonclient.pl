@@ -735,7 +735,7 @@ sub print_match {
     print_and_clear( $for );
     print_and_clear( $jointly );
     print &source ($source[0]);
-    print ', then ', $disp, &source ($source[1]) if ($source =~ /-/);
+    print ', then ', $disp, ' ', &source ($source[1]) if ($source =~ /-/);
     print '.';
     print '</span>';
     $result_stats{'armory-' . $type_name{$type} . '-' . ($source =~ /-/ ? 'obsolete' : 'current') } ++;
