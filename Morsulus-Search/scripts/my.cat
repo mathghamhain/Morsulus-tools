@@ -292,7 +292,8 @@
 |posture:statant to dexter<statant=passant to dexter<passant<courant=courant to dexter
 |posture:statant to sinister<statant=passant to sinister<passant<courant=courant to sinister
 |posture:statant=passant=passant to dexter=passant to sinister=statant to dexter=statant to sinister=courant=courant to dexter=courant to sinister
-|posture:tergiant|relation:between<not surrounding
+|posture:tergiant
+|relation:between<not surrounding
 |relation:not surrounding
 |relation:surrounding
 |relation:surrounding 1 only<surrounding
